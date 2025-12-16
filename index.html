@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGenFi - Smart Investment Platform</title>
+    <meta name="description" content="Earn daily returns with 4% capital return, multi-level referral bonuses, and leadership rewards system">
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bignumber.js@9.1.2/bignumber.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="green-bar"></div>
+            <div class="green-bar"></div>
+            <div class="green-bar"></div>
+            <div class="green-bar"></div>
+            <div class="green-bar"></div>
+        </div>
+        <div class="preloader-text">NEXGENFI</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <img src="image/logo.png" alt="N" class="logo">
+                <div class="logo__text">NEXGENFI</div>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a class="nav__link active" data-section="home">Home</a></li>
+                    <li class="nav__item"><a class="nav__link" data-section="dashboard">Dashboard</a></li>
+                    <li class="nav__item"><a class="nav__link" data-section="invest">Invest</a></li>
+                    <li class="nav__item"><a class="nav__link" data-section="referral">Referral</a></li>
+                    <li class="nav__item"><a class="nav__link" data-section="leadership">Leadership</a></li>
+                    <li class="nav__item"><a class="nav__link" data-section="faq">FAQ</a></li>
+                </ul>
+
+                <button class="btn btn--outline btn-sm" id="connectWallet">
+                    <i class="fas fa-wallet"></i>
+                    Connect Wallet
+                </button>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section class="hero section" id="home">
+            <div class="hero__container container">
+                <div class="hero__content">
+                    <div class="badge">
+                        <i class="fas fa-chart-line"></i> Smart Investment Platform
+                    </div>
+                    <h1 class="hero__title">
+                        Maximize Your Returns with <br>
+                        <span class="gradient-text">NexGenFi Protocol</span>
+                    </h1>
+                    <p class="hero__description">
+                        Invest USDT and earn 4% daily capital return plus ROI bonuses. Build your team and unlock 20-level referral commissions and 7 leadership ranks.
+                    </p>
+                    <div class="hero__buttons">
+                        <button class="btn btn--primary btn-lg" data-section="invest">
+                            <i class="fas fa-rocket"></i>
+                            Start Investing
+                        </button>
+                        <button class="btn btn--outline btn-lg" data-section="dashboard">
+                            <i class="fas fa-chart-line"></i>
+                            View Dashboard
+                        </button>
+                    </div>
+                </div>
+                <div class="hero__image">
+                    <div class="floating-card">
+                        <div class="card__header">
+                            <h3>Platform Statistics</h3>
+                            <div class="live-indicator">
+                                <span class="dot"></span>
+                                LIVE
+                            </div>
+                        </div>
+                        <div class="card__content">
+                            <div class="stat-item">
+                                <span class="label">Contract Balance</span>
+                                <span class="value" id="statContractBalance">Loading...</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Total Users</span>
+                                <span class="value" id="statTotalUsers">Loading...</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Total Investment</span>
+                                <span class="value" id="statTotalInvest">Loading...</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Total Paid Out</span>
+                                <span class="value" id="statTotalPaid">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="section" id="dashboard" style="display: none;">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Your Dashboard</h2>
+                    <p class="section__subtitle">Monitor all your investments and earnings</p>
+                </div>
+
+                <div class="alert alert-warning" id="dashboardWalletAlert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Please connect your wallet to view your dashboard</span>
+                </div>
+
+                <div class="quick-stats" id="quickStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalDeposits">0 USDT</div>
+                            <div class="stat-label">Total Deposits</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="availableCapital">0 USDT</div>
+                            <div class="stat-label">Available Capital</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="availableRoi">0 USDT</div>
+                            <div class="stat-label">Available ROI</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-gift"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="availableRewards">0 USDT</div>
+                            <div class="stat-label">Available Rewards</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" id="actionButtons" style="display: none;">
+                    <button class="btn btn--primary" data-section="invest">
+                        <i class="fas fa-plus-circle"></i> New Deposit
+                    </button>
+                    <button class="btn btn--outline" id="claimAllROI">
+                        <i class="fas fa-download"></i> Claim All ROI
+                    </button>
+                    <button class="btn btn--outline" id="claimAllRewards">
+                        <i class="fas fa-gift"></i> Claim All Rewards
+                    </button>
+                    <button class="btn btn--primary" id="claimAllCapital" style="display: none;">
+                        <i class="fas fa-university"></i> Claim All Capital
+                    </button>
+                </div>
+
+                <!-- Investment Positions Section -->
+                <div class="investment-history-container" id="investmentHistorySection" style="display: none; margin-top: 40px;">
+                    <div class="investment-history-header">
+                        <h3 style="font-size: 1.5rem;">My Investment Positions</h3>
+                        <div class="investment-count" style="color: var(--text-muted);">
+                            Active: <span id="activePositions">0</span> / Total: <span id="totalPositions">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-history-list" id="investmentHistoryList">
+                        <!-- Investment positions will be generated here -->
+                    </div>
+                </div>
+                
+                <div class="empty-state" id="noInvestmentsMessage" style="display: none;">
+                    <div class="empty-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>No Active Investments</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Make your first deposit to start earning daily returns</p>
+                    <button class="btn btn--primary" data-section="invest">
+                        <i class="fas fa-rocket"></i> Start Investing
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Invest Section -->
+        <section class="section" id="invest" style="display: none;">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Make a Deposit</h2>
+                    <p class="section__subtitle">Minimum deposit: 10 USDT | 25-day cycle | 4% daily capital return</p>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span><strong>Note:</strong> 10% admin fee will be automatically deducted and sent to admin wallet (does not reduce your deposit amount)</span>
+                </div>
+
+                <div class="alert alert-warning" id="investWalletAlert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Please connect your wallet to make a deposit</span>
+                </div>
+
+                <div class="investment-plans" id="investmentPlans">
+                    <div class="plan-card featured">
+                        <div class="plan-name">Standard Investment</div>
+                        <div class="plan-roi">4% Daily Capital + ROI Bonus</div>
+                        <div class="plan-range">10+ USDT</div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 4% Daily Capital Return (25 days)</li>
+                            <li><i class="fas fa-check"></i> ROI Bonus: 0.5% - 1.5% daily</li>
+                            <li><i class="fas fa-check"></i> 25-day investment cycle</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Auto per-second distribution</li>
+                        </ul>
+                        <div class="plan-total">Total Returns: Capital + ROI after 25 days</div>
+                        <button class="btn btn--primary" id="startInvestBtn">
+                            Make Deposit
+                        </button>
+                    </div>
+                </div>
+
+                <div class="investment-form-container" id="investmentForm" style="display: none;">
+                    <div class="card__header">
+                        <h2>Complete Your Deposit</h2>
+                        <button class="btn btn--outline btn-sm" id="backToPlans">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+
+                    <div class="investment-form">
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>ROI Bonus Rates Based on Deposit Amount</label>
+                            <div class="plan-summary">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">10-499 USDT</div>
+                                        <div style="color:var(--primary-accent);">0.5% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 24h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">500-999 USDT</div>
+                                        <div style="color:var(--primary-accent);">0.75% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 12h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">1000-2499 USDT</div>
+                                        <div style="color:var(--primary-accent);">1% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 8h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">2500-4999 USDT</div>
+                                        <div style="color:var(--primary-accent);">1.25% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 4h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px; grid-column: span 2;">
+                                        <div style="color:white; font-weight:600;">5000+ USDT</div>
+                                        <div style="color:var(--primary-accent);">1.5% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 2h</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="investmentAmount">Deposit Amount (USDT)</label>
+                            <input type="number" id="investmentAmount" class="form-input" placeholder="0.00" min="10" step="0.01">
+                            <div class="amount-range" id="amountRange" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                                Minimum: 10 USDT | No maximum limit | Max 100 positions per user
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <label for="referrerAddress">Upline Address (Optional)</label>
+                            <input type="text" id="referrerAddress" class="form-input" placeholder="0x...">
+                            <small style="color: var(--text-muted); font-size: 0.8rem; margin-top: 5px; display: block;">
+                                Leave empty if no upline
+                            </small>
+                        </div>
+
+                        <button class="btn btn--primary btn-lg" id="confirmInvestment" style="width: 100%;">
+                            <i class="fas fa-check-circle"></i> Confirm Deposit
+                        </button>
+                    </div>
+                </div>
+
+                <div class="investment-success-popup" id="investmentSuccessPopup">
+                    <div class="investment-success">
+                        <div class="success-icon"><i class="fas fa-check"></i></div>
+                        <h2 style="margin-bottom: 10px;">Deposit Successful!</h2>
+                        <p style="color: var(--text-muted); margin-bottom: 30px;">Your investment is now active and earning returns</p>
+                        <div class="success-actions" style="display: flex; gap: 10px; justify-content: center;">
+                            <button class="btn btn--primary" data-section="dashboard">Go to Dashboard</button>
+                            <button class="btn btn--outline" id="newInvestment">New Deposit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Referral Section -->
+        <section class="section" id="referral" style="display: none;">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">20-Level Referral Program</h2>
+                    <p class="section__subtitle">Earn commissions from your entire network structure</p>
+                </div>
+
+                <div class="alert alert-warning" id="referralWalletAlert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Please connect your wallet to access referral program</span>
+                </div>
+
+                <div class="referral-stats" id="referralStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-gift"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="referralEarnings">0 USDT</div>
+                            <div class="stat-label">Referral Earnings</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="onboardingEarnings">0 USDT</div>
+                            <div class="stat-label">Onboarding Bonus</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalDownlines">0</div>
+                            <div class="stat-label">Total Downlines</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="qualifiedLevels">0</div>
+                            <div class="stat-label">Qualified Levels</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" id="referralActionButtons" style="display: none; margin-bottom: 30px;">
+                    <button class="btn btn--primary" id="claimReferralBonus">
+                        <i class="fas fa-download"></i> Claim Referral Rewards
+                    </button>
+                </div>
+
+                <div class="referral-link-container" id="referralLinkSection" style="display: none; text-align: center; margin-bottom: 40px;">
+                    <h2 style="margin-bottom: 10px; font-size: 1.5rem;">Your Referral Link</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Share this link to grow your network and earn commissions</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" id="referralLink" class="link-input" readonly style="flex: 1;">
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                        <button class="btn btn--primary" id="copyLink" style="padding: 12px 28px; font-size: 0.95rem;">
+                            <i class="fas fa-copy"></i> Copy Referral Link
+                        </button>
+                    </div>
+                </div>
+
+                <div class="referral-levels-compact" id="referralLevelsCompact">
+                    <!-- 20 Levels will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Section -->
+        <section class="section" id="leadership" style="display: none;">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">7-Tier Leadership Program</h2>
+                    <p class="section__subtitle">Unlock higher bonuses by building a strong team</p>
+                </div>
+
+                <div class="alert alert-warning" id="leadershipWalletAlert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Please connect your wallet to view leadership program</span>
+                </div>
+
+                <div class="leadership-stats" id="leadershipStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-crown"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="leadershipEarnings">0 USDT</div>
+                            <div class="stat-label">Leadership Earnings</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-medal"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="currentRank">-</div>
+                            <div class="stat-label">Current Rank</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="teamMembers">0</div>
+                            <div class="stat-label">Team Members</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="teamDeposits">0 USDT</div>
+                            <div class="stat-label">Team Deposits</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" id="leadershipActionButtons" style="display: none; margin-bottom: 30px;">
+                    <button class="btn btn--primary" id="claimLeadershipBonus">
+                        <i class="fas fa-download"></i> Claim Leadership Rewards
+                    </button>
+                </div>
+
+                <div class="leadership-levels-compact" id="leadershipLevelsCompact">
+                    <!-- 7 Ranks will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section" id="faq" style="display: none;">
+            <div class="container" style="max-width: 800px;">
+                <div class="section__header">
+                    <h2 class="section__title">Frequently Asked Questions</h2>
+                    <p class="section__subtitle">Everything you need to know about NexGenFi</p>
+                </div>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the minimum deposit?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The minimum deposit is 10 USDT. There is no maximum limit, but each user can have up to 100 active investment positions.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How are returns calculated?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You earn two types of returns: 1) 4% daily capital return (distributed per second, claimable after 25 days), 2) ROI bonus from 0.5% to 1.5% daily based on deposit amount (distributed per second, claimable every 2-24 hours depending on plan).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the 10% admin fee?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A 10% admin fee is automatically deducted from each deposit and sent to the admin wallet. This fee does NOT reduce your deposit amount - if you deposit 100 USDT, you get 100 USDT worth of investment position.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How does the referral program work?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Earn commissions from 20 levels of your downline network. Level 1: 1.5%, Level 2: 1.25%, Levels 3-10: 1%, Levels 11-15: 0.5%, Levels 16-20: 0.25%. You must meet qualification requirements for each level.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What are the referral qualification requirements?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Levels 1-5: Active deposit of 10 USDT. Levels 6-10: Minimum 2 qualified downlines (100 USDT deposit each). Levels 11-15: Minimum 3 qualified downlines. Levels 16-20: Minimum 5 qualified downlines.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the onboarding bonus?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>When your direct downline makes their first deposit: 50-99 USDT = 5 USDT bonus, 100+ USDT = 10 USDT bonus. This bonus is paid only once per downline.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How does the leadership program work?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>7 ranks with increasing bonuses (0.5% to 5%) based on team size and team deposit volume. Bonuses are calculated from ROI withdrawals of your downlines.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>When can I withdraw my capital?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Capital return (4% daily) is distributed per second and becomes claimable after the 25-day investment cycle ends. ROI bonuses can be claimed based on your plan's withdrawal frequency.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I compound my earnings?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! You can compound both ROI bonuses and referral/leadership rewards to open new investment positions. Minimum compound amount is 1 USDT and there is no admin fee for compounding.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is there a minimum withdrawal amount?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Minimum withdrawal is 1 USDT for all types of earnings (ROI, rewards, and capital).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content" style="text-align: center;">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <img src="image/logo.png" alt="NexGenFi" class="logo" style="width: 30px; height: 30px;">
+                        <span>NexGenFi</span>
+                    </div>
+                    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; line-height: 1.6;">
+                        Smart investment platform with 4% daily capital return, 20-level referral commissions, and 7-tier leadership rewards
+                    </p>
+                    <div class="footer__social">
+                        <a href="#" class="social__link"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="social__link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://bscscan.com/address/0x68faE5c4B07eA9c035fBB8ae7f0BfF97C5B82002" class="social__link"><i class="fas fa-file-contract"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; NexGenFi All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
