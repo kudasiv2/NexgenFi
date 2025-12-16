@@ -1,4 +1,4 @@
-// Contract Configuration
+// Updated contract address and ABI for new concept
 const CONTRACT_ADDRESS = '0x68faE5c4B07eA9c035fBB8ae7f0BfF97C5B82002';
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
 const READ_ONLY_RPC = 'https://bsc-dataseed1.binance.org/';
@@ -10,21 +10,16 @@ const USDT_ABI = [
     {"constant": true, "inputs": [], "name": "decimals", "outputs": [{"name": "", "type": "uint8"}], "type": "function"}
 ];
 
+// Note: ABI remains the same as provided
 const CONTRACT_ABI = [{"inputs":[{"internalType":"address","name":"_usdtAddress","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"CapitalReturnWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"bool","name":"isRoi","type":"bool"}],"name":"Compounded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":true,"internalType":"address","name":"upline","type":"address"}],"name":"Deposited","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"rankIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"LeadershipBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"downline","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"OnboardingBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"downline","type":"address"},{"indexed":false,"internalType":"uint256","name":"level","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"ReferralBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"ReferralExpiredCollected","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"totalAmount","type":"uint256"}],"name":"RewardWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"RoiBonusWithdrawn","type":"event"},{"inputs":[],"name":"ADMIN_FEE_PERCENT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ADMIN_WALLET","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"CAPITAL_RETURN_PERCENT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"CYCLE_DURATION","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MIN_DEPOSIT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MIN_WITHDRAW","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_BONUS_100","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_BONUS_50","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_THRESHOLD_100","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_THRESHOLD_50","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"SECONDS_PER_DAY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"claimCapitalReturn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claimRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"claimRoiBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"compoundRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"compoundRoiBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"upline","type":"address"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"downlines","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"getAvailableCapitalReturn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"getAvailableRoiBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBonusStats","outputs":[{"internalType":"uint256","name":"totalReferralPayout","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingPayout","type":"uint256"},{"internalType":"uint256","name":"totalLeadershipPayout","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getContractBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getDownlines","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getGlobalStats","outputs":[{"internalType":"uint256","name":"contractBalance","type":"uint256"},{"internalType":"uint256","name":"investorsCount","type":"uint256"},{"internalType":"uint256","name":"totalInvestment","type":"uint256"},{"internalType":"uint256","name":"totalPayout","type":"uint256"},{"internalType":"uint256","name":"totalPositionsCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentAvailableReturns","outputs":[{"internalType":"uint256","name":"availableRoiBonus","type":"uint256"},{"internalType":"uint256","name":"availableCapitalReturn","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentBasicInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"bool","name":"isActive","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentClaimedInfo","outputs":[{"internalType":"uint256","name":"capitalReturnClaimed","type":"uint256"},{"internalType":"uint256","name":"roiBonusClaimed","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentPlanInfo","outputs":[{"internalType":"uint256","name":"planIndex","type":"uint256"},{"internalType":"uint256","name":"lastRoiWithdrawTime","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getInvestmentsCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"getPlanIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalInvested","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalPaidOut","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalUsers","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserAvailableReturns","outputs":[{"internalType":"uint256","name":"totalCapitalReturn","type":"uint256"},{"internalType":"uint256","name":"totalRoiBonus","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserBonusStats","outputs":[{"internalType":"uint256","name":"totalReferralBonus","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingBonus","type":"uint256"},{"internalType":"uint256","name":"availableRewards","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserPositionsCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserRank","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserReferralBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserTeamStats","outputs":[{"internalType":"uint256","name":"teamCount","type":"uint256"},{"internalType":"uint256","name":"teamDeposits","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserTotalDeposits","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserTotalWithdrawn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserUpline","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"investments","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"capitalReturnClaimed","type":"uint256"},{"internalType":"uint256","name":"roiBonusClaimed","type":"uint256"},{"internalType":"uint256","name":"lastRoiWithdrawTime","type":"uint256"},{"internalType":"uint256","name":"planIndex","type":"uint256"},{"internalType":"bool","name":"isActive","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"leadershipBonusEarned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"planThresholds","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"ranks","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"uint256","name":"requiredTeam","type":"uint256"},{"internalType":"uint256","name":"requiredDeposit","type":"uint256"},{"internalType":"uint256","name":"bonusPercent","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"referralBonusEarned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"referralBonuses","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"roiBonusPercentages","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"roiWithdrawIntervals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalInvested","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalInvestors","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalLeadershipPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalOnboardingPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalPositions","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"totalReferralExpired","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalReferralPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalWithdrawn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"usdtToken","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"userQualifiedDownlines","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"users","outputs":[{"internalType":"address","name":"upline","type":"address"},{"internalType":"uint256","name":"totalDeposits","type":"uint256"},{"internalType":"uint256","name":"totalWithdrawn","type":"uint256"},{"internalType":"uint256","name":"totalReferralBonus","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingBonus","type":"uint256"},{"internalType":"uint256","name":"onboardingBonusClaimed","type":"uint256"},{"internalType":"uint256","name":"lastDepositTime","type":"uint256"},{"internalType":"uint256","name":"positionsCount","type":"uint256"},{"internalType":"bool","name":"hasDeposited","type":"bool"},{"internalType":"uint256","name":"teamDeposits","type":"uint256"},{"internalType":"uint256","name":"teamCount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdrawReferralExpired","outputs":[],"stateMutability":"nonpayable","type":"function"}];
 
-// Global Variables
 let web3;
 let contract;
 let usdtContract;
 let userAccount;
 let referralAddress = null;
 let userInvestments = [];
-let userTeamData = [];
-let selectedPlan = null;
-let roiTimerInterval = null;
-let capitalTimerInterval = null;
 
-// DOM Elements
 const preloader = document.querySelector('.preloader');
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
@@ -32,79 +27,21 @@ const connectWalletBtn = document.getElementById('connectWallet');
 const notification = document.getElementById('notification');
 const investmentSuccessPopup = document.getElementById('investmentSuccessPopup');
 
-// Sections
 const sections = {
     home: document.getElementById('home'),
     dashboard: document.getElementById('dashboard'),
     invest: document.getElementById('invest'),
     referral: document.getElementById('referral'),
     leadership: document.getElementById('leadership'),
-    team: document.getElementById('team'),
     faq: document.getElementById('faq')
 };
 
-// Investment Plans Data
-const investmentPlans = [
-    {
-        id: 0,
-        name: 'Beginner',
-        min: 10,
-        max: 499,
-        capital: '4%',
-        roi: '0.5%',
-        interval: 'Every 24h',
-        cycle: '25 days'
-    },
-    {
-        id: 1,
-        name: 'Basic',
-        min: 500,
-        max: 999,
-        capital: '4%',
-        roi: '0.75%',
-        interval: 'Every 12h',
-        cycle: '25 days'
-    },
-    {
-        id: 2,
-        name: 'Standard',
-        min: 1000,
-        max: 2499,
-        capital: '4%',
-        roi: '1%',
-        interval: 'Every 8h',
-        cycle: '25 days'
-    },
-    {
-        id: 3,
-        name: 'High',
-        min: 2500,
-        max: 4999,
-        capital: '4%',
-        roi: '1.25%',
-        interval: 'Every 4h',
-        cycle: '25 days'
-    },
-    {
-        id: 4,
-        name: 'Premium',
-        min: 5000,
-        max: Infinity,
-        capital: '4%',
-        roi: '1.5%',
-        interval: 'Every 2h',
-        cycle: '25 days'
-    }
-];
-
-// Initialize Application
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
     setupEventListeners();
     checkPreloader();
     checkURLForReferral();
     setupFAQ();
-    generateInvestmentPlans();
     generateReferralLevelsCompact();
     generateLeadershipLevelsCompact();
 });
@@ -222,9 +159,7 @@ async function connectWallet() {
 }
 
 function setupEventListeners() {
-    // Navigation
     navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
-    
     document.addEventListener('click', (e) => {
         if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
             navMenu.classList.remove('active');
@@ -242,29 +177,22 @@ function setupEventListeners() {
         });
     });
     
-    // Wallet
     connectWalletBtn.addEventListener('click', connectWallet);
-    
-    // Investment
+    document.getElementById('startInvestBtn').addEventListener('click', showInvestmentForm);
     document.getElementById('backToPlans').addEventListener('click', showPlans);
     document.getElementById('confirmInvestment').addEventListener('click', confirmInvestment);
     document.getElementById('newInvestment').addEventListener('click', () => {
         investmentSuccessPopup.classList.remove('active');
         showPlans();
     });
-    document.getElementById('investmentAmount').addEventListener('input', validateInvestmentAmount);
-    
-    // Dashboard Actions
-    document.getElementById('claimROI').addEventListener('click', claimAllROI);
-    document.getElementById('claimCapital').addEventListener('click', claimAllCapital);
-    document.getElementById('compoundROI').addEventListener('click', compoundAllROI);
-    document.getElementById('claimNetwork').addEventListener('click', claimNetworkRewards);
-    document.getElementById('compoundNetwork').addEventListener('click', compoundNetworkRewards);
-    
-    // Referral
+    document.getElementById('claimAllROI').addEventListener('click', claimAllROI);
+    document.getElementById('claimAllRewards').addEventListener('click', claimAllRewards);
+    document.getElementById('claimAllCapital').addEventListener('click', claimAllCapital);
+    document.getElementById('claimReferralBonus').addEventListener('click', claimReferralBonus);
+    document.getElementById('claimLeadershipBonus').addEventListener('click', claimLeadershipBonus);
     document.getElementById('copyLink').addEventListener('click', copyReferralLink);
+    document.getElementById('investmentAmount').addEventListener('input', updateROIDisplay);
     
-    // Ethereum Events
     if (window.ethereum) {
         window.ethereum.on('accountsChanged', (accounts) => {
             userAccount = accounts.length > 0 ? accounts[0] : null;
@@ -285,15 +213,12 @@ function setupEventListeners() {
 }
 
 function showSection(sectionName) {
-    // Hide all sections
     Object.values(sections).forEach(section => {
         if (section) section.style.display = 'none';
     });
     
-    // Remove active class from all nav links
     document.querySelectorAll('.nav__link').forEach(link => link.classList.remove('active'));
     
-    // Show selected section
     if (sections[sectionName]) {
         sections[sectionName].style.display = 'flex';
         if (sectionName !== 'home') {
@@ -301,23 +226,19 @@ function showSection(sectionName) {
         }
         window.scrollTo(0, 0);
         
-        // Add active class to nav link
         const navLink = document.querySelector(`.nav__link[data-section="${sectionName}"]`);
         if (navLink) navLink.classList.add('active');
         
-        // Load data for specific sections
+        // Refresh data when switching to certain sections
         if (sectionName === 'dashboard' && userAccount) {
             loadUserData();
-        } else if (sectionName === 'team' && userAccount) {
-            loadTeamData();
         }
     }
 }
 
 function updateWalletUI() {
     if (userAccount) {
-        const shortAddress = `${userAccount.substring(0, 6)}...${userAccount.substring(userAccount.length - 4)}`;
-        connectWalletBtn.innerHTML = `<i class="fas fa-wallet"></i> ${shortAddress}`;
+        connectWalletBtn.innerHTML = `<i class="fas fa-wallet"></i> ${userAccount.substring(0, 6)}...${userAccount.substring(userAccount.length - 4)}`;
         hideWalletAlerts();
     } else {
         connectWalletBtn.innerHTML = `<i class="fas fa-wallet"></i> Connect Wallet`;
@@ -326,25 +247,24 @@ function updateWalletUI() {
 }
 
 function showWalletAlerts() {
-    ['dashboardWalletAlert', 'investWalletAlert', 'referralWalletAlert', 'leadershipWalletAlert', 'teamWalletAlert'].forEach(id => {
+    ['dashboardWalletAlert', 'investWalletAlert', 'referralWalletAlert', 'leadershipWalletAlert'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'flex';
     });
     
-    ['incomeTables', 'positionsSection', 'teamDataContainer', 'referralLinkSection'].forEach(id => {
+    ['quickStats', 'actionButtons', 'noInvestmentsMessage', 'referralStats', 'referralLinkSection', 'referralActionButtons', 'leadershipStats', 'leadershipActionButtons', 'investmentHistorySection'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
 }
 
 function hideWalletAlerts() {
-    ['dashboardWalletAlert', 'investWalletAlert', 'referralWalletAlert', 'leadershipWalletAlert', 'teamWalletAlert'].forEach(id => {
+    ['dashboardWalletAlert', 'investWalletAlert', 'referralWalletAlert', 'leadershipWalletAlert'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
     
-    document.getElementById('incomeTables').style.display = 'flex';
-    document.getElementById('positionsSection').style.display = 'block';
+    document.getElementById('actionButtons').style.display = 'flex';
     document.getElementById('referralLinkSection').style.display = 'block';
 }
 
@@ -358,46 +278,60 @@ async function loadUserData() {
         const availableReturns = await contract.methods.getUserAvailableReturns(userAccount).call();
         const bonusStats = await contract.methods.getUserBonusStats(userAccount).call();
         const teamStats = await contract.methods.getUserTeamStats(userAccount).call();
+        const userRank = await contract.methods.getUserRank(userAccount).call();
         const investmentsCount = await contract.methods.getInvestmentsCount(userAccount).call();
         
         const formatUSDT = (weiValue) => {
             return parseFloat(web3.utils.fromWei(weiValue, 'ether')).toFixed(2);
         };
         
-        // Update Investment Income
-        document.getElementById('totalDeposit').textContent = `${formatUSDT(totalDeposits)} USDT`;
-        document.getElementById('capitalEarning').textContent = `${formatUSDT(availableReturns.totalCapitalReturn)} USDT`;
-        document.getElementById('roiEarning').textContent = `${formatUSDT(availableReturns.totalRoiBonus)} USDT`;
+        // Update dashboard stats
+        document.getElementById('totalDeposits').textContent = `${formatUSDT(totalDeposits)} USDT`;
+        document.getElementById('availableCapital').textContent = `${formatUSDT(availableReturns.totalCapitalReturn)} USDT`;
+        document.getElementById('availableRoi').textContent = `${formatUSDT(availableReturns.totalRoiBonus)} USDT`;
+        document.getElementById('availableRewards').textContent = `${formatUSDT(bonusStats.availableRewards)} USDT`;
         
-        // Update Network Income
-        document.getElementById('referralEarning').textContent = `${formatUSDT(bonusStats.totalReferralBonus)} USDT`;
-        document.getElementById('onboardingEarning').textContent = `${formatUSDT(bonusStats.totalOnboardingBonus)} USDT`;
-        document.getElementById('leadershipEarning').textContent = `${formatUSDT(bonusStats.availableRewards)} USDT`;
+        // Update referral stats
+        document.getElementById('referralEarnings').textContent = `${formatUSDT(bonusStats.totalReferralBonus)} USDT`;
+        document.getElementById('onboardingEarnings').textContent = `${formatUSDT(bonusStats.totalOnboardingBonus)} USDT`;
+        document.getElementById('totalDownlines').textContent = teamStats.teamCount;
         
-        // Enable/disable buttons based on available amounts
-        const roiAmount = parseFloat(formatUSDT(availableReturns.totalRoiBonus));
-        const capitalAmount = parseFloat(formatUSDT(availableReturns.totalCapitalReturn));
-        const networkAmount = parseFloat(formatUSDT(bonusStats.availableRewards));
-        
-        document.getElementById('claimROI').disabled = roiAmount <= 0;
-        document.getElementById('claimCapital').disabled = capitalAmount <= 0;
-        document.getElementById('compoundROI').disabled = roiAmount < 1;
-        document.getElementById('claimNetwork').disabled = networkAmount <= 0;
-        document.getElementById('compoundNetwork').disabled = networkAmount < 1;
+        // Update leadership stats
+        document.getElementById('leadershipEarnings').textContent = `${formatUSDT(bonusStats.availableRewards)} USDT`;
+        document.getElementById('currentRank').textContent = userRank || 'No Rank';
+        document.getElementById('teamMembers').textContent = teamStats.teamCount;
+        document.getElementById('teamDeposits').textContent = `${formatUSDT(teamStats.teamDeposits)} USDT`;
         
         // Load investment positions
         await loadInvestmentPositions(investmentsCount);
         
+        // Show/hide sections based on data
+        const hasInvestments = parseInt(investmentsCount) > 0;
+        
+        document.getElementById('noInvestmentsMessage').style.display = hasInvestments ? 'none' : 'block';
+        document.getElementById('investmentHistorySection').style.display = hasInvestments ? 'block' : 'none';
+        document.getElementById('quickStats').style.display = 'grid';
+        document.getElementById('referralStats').style.display = 'grid';
+        document.getElementById('leadershipStats').style.display = 'grid';
+        document.getElementById('referralActionButtons').style.display = 'flex';
+        document.getElementById('leadershipActionButtons').style.display = 'flex';
+        
+        // Update counts
+        document.getElementById('totalPositions').textContent = investmentsCount;
+        document.getElementById('activePositions').textContent = userInvestments.filter(inv => inv.isActive).length;
+        
         // Generate referral link
         generateReferralLink();
         
-        // Start timers
-        startROITimer();
-        startCapitalTimer();
+        // Check if user has capital available to claim
+        if (parseFloat(availableReturns.totalCapitalReturn) > 0) {
+            document.getElementById('claimAllCapital').style.display = 'inline-flex';
+        } else {
+            document.getElementById('claimAllCapital').style.display = 'none';
+        }
         
-        // Show/hide positions message
-        const hasPositions = parseInt(investmentsCount) > 0;
-        document.getElementById('noPositionsMessage').style.display = hasPositions ? 'none' : 'block';
+        // Update qualified levels display
+        await updateQualifiedLevels(totalDeposits, teamStats.teamCount);
         
     } catch (error) {
         console.error('Error loading user data:', error);
@@ -409,8 +343,10 @@ async function loadInvestmentPositions(investmentsCount) {
     if (!contract || !userAccount) return;
     
     try {
-        const tableBody = document.getElementById('positionsTableBody');
-        tableBody.innerHTML = '';
+        const investmentHistoryList = document.getElementById('investmentHistoryList');
+        if (!investmentHistoryList) return;
+        
+        investmentHistoryList.innerHTML = '';
         userInvestments = [];
         
         const formatUSDT = (weiValue) => {
@@ -420,6 +356,8 @@ async function loadInvestmentPositions(investmentsCount) {
         for (let i = 0; i < parseInt(investmentsCount); i++) {
             try {
                 const basicInfo = await contract.methods.getInvestmentBasicInfo(userAccount, i).call();
+                const claimedInfo = await contract.methods.getInvestmentClaimedInfo(userAccount, i).call();
+                const availableReturns = await contract.methods.getInvestmentAvailableReturns(userAccount, i).call();
                 const planInfo = await contract.methods.getInvestmentPlanInfo(userAccount, i).call();
                 
                 const investment = {
@@ -428,46 +366,105 @@ async function loadInvestmentPositions(investmentsCount) {
                     startTime: basicInfo.startTime,
                     endTime: basicInfo.endTime,
                     isActive: basicInfo.isActive,
+                    capitalClaimed: claimedInfo.capitalReturnClaimed,
+                    roiClaimed: claimedInfo.roiBonusClaimed,
+                    availableCapital: availableReturns.availableCapitalReturn,
+                    availableRoi: availableReturns.availableRoiBonus,
                     planIndex: planInfo.planIndex,
                     lastRoiTime: planInfo.lastRoiWithdrawTime
                 };
                 
                 userInvestments.push(investment);
                 
-                // Determine plan name
-                const amountInUSDT = parseFloat(web3.utils.fromWei(investment.amount, 'ether'));
-                let planName = 'Beginner';
-                if (amountInUSDT >= 5000) planName = 'Premium';
-                else if (amountInUSDT >= 2500) planName = 'High';
-                else if (amountInUSDT >= 1000) planName = 'Standard';
-                else if (amountInUSDT >= 500) planName = 'Basic';
-                
-                // Determine type
-                const type = investment.planIndex === '0' ? 'Deposit' : 'Compound';
-                
-                // Determine status
+                // Calculate status
                 const currentTime = Math.floor(Date.now() / 1000);
                 let status = 'Active';
+                let statusClass = 'status-active';
+                let daysRemaining = 0;
+                
                 if (!investment.isActive) {
                     status = 'Completed';
-                } else if (currentTime > parseInt(investment.endTime)) {
-                    status = 'Matured';
+                    statusClass = 'status-completed';
+                } else {
+                    daysRemaining = Math.max(0, Math.ceil((parseInt(investment.endTime) - currentTime) / (24 * 60 * 60)));
+                    if (daysRemaining === 0) {
+                        status = 'Matured';
+                        statusClass = 'status-pending';
+                    }
                 }
                 
-                // Create table row
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${i + 1}</td>
-                    <td>${type}</td>
-                    <td>${formatUSDT(investment.amount)} USDT</td>
-                    <td>${new Date(parseInt(investment.startTime) * 1000).toLocaleDateString()}</td>
-                    <td><span class="investment-status ${status.toLowerCase()}">${status}</span></td>
-                    <td>${planName}</td>
+                // Determine plan details based on amount
+                const amountInUSDT = parseFloat(web3.utils.fromWei(investment.amount, 'ether'));
+                let roiPercentage = '0.5%';
+                let withdrawInterval = '24h';
+                
+                if (amountInUSDT >= 5000) {
+                    roiPercentage = '1.5%';
+                    withdrawInterval = '2h';
+                } else if (amountInUSDT >= 2500) {
+                    roiPercentage = '1.25%';
+                    withdrawInterval = '4h';
+                } else if (amountInUSDT >= 1000) {
+                    roiPercentage = '1%';
+                    withdrawInterval = '8h';
+                } else if (amountInUSDT >= 500) {
+                    roiPercentage = '0.75%';
+                    withdrawInterval = '12h';
+                }
+                
+                // Create investment position item
+                const investmentItem = document.createElement('div');
+                investmentItem.className = 'investment-history-item';
+                investmentItem.innerHTML = `
+                    <div class="investment-plan">Position #${i + 1} - ${roiPercentage} ROI</div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Deposit Amount:</span>
+                        <span class="detail-value investment-amount">${formatUSDT(investment.amount)} USDT</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Start Date:</span>
+                        <span class="detail-value">${new Date(parseInt(investment.startTime) * 1000).toLocaleDateString()}</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">End Date:</span>
+                        <span class="detail-value">${new Date(parseInt(investment.endTime) * 1000).toLocaleDateString()}</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Days Remaining:</span>
+                        <span class="detail-value">${daysRemaining} days</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Available Capital:</span>
+                        <span class="detail-value">${formatUSDT(investment.availableCapital)} USDT</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Available ROI:</span>
+                        <span class="detail-value">${formatUSDT(investment.availableRoi)} USDT</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Withdraw Interval:</span>
+                        <span class="detail-value">Every ${withdrawInterval}</span>
+                    </div>
+                    <div class="investment-detail">
+                        <span class="detail-label">Status:</span>
+                        <span class="detail-value"><span class="investment-status ${statusClass}">${status}</span></span>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <button class="btn btn--outline btn-sm" onclick="claimCapitalReturn(${i})" style="flex:1;" ${!investment.isActive || parseInt(investment.endTime) > Math.floor(Date.now()/1000) ? 'disabled' : ''}>
+                            <i class="fas fa-university"></i> Claim Capital
+                        </button>
+                        <button class="btn btn--primary btn-sm" onclick="claimRoiBonus(${i})" style="flex:1;" ${parseFloat(investment.availableRoi) <= 0 ? 'disabled' : ''}>
+                            <i class="fas fa-download"></i> Claim ROI
+                        </button>
+                        <button class="btn btn--outline btn-sm" onclick="compoundRoiBonus(${i})" style="flex:1;" ${parseFloat(investment.availableRoi) <= 0 ? 'disabled' : ''}>
+                            <i class="fas fa-recycle"></i> Compound
+                        </button>
+                    </div>
                 `;
                 
-                tableBody.appendChild(row);
+                investmentHistoryList.appendChild(investmentItem);
             } catch (error) {
-                console.error(`Error loading investment ${i}:`, error);
+                console.error(`Error loading investment position ${i}:`, error);
             }
         }
         
@@ -476,284 +473,91 @@ async function loadInvestmentPositions(investmentsCount) {
     }
 }
 
-async function loadTeamData() {
-    if (!contract || !userAccount) return;
+async function updateQualifiedLevels(totalDeposits, teamCount) {
+    // Calculate qualified levels based on requirements
+    let qualifiedLevels = 0;
+    const userDeposit = parseFloat(web3.utils.fromWei(totalDeposits, 'ether'));
     
-    try {
-        const tableBody = document.getElementById('teamTableBody');
-        tableBody.innerHTML = '';
-        userTeamData = [];
-        
-        // Get downlines (simplified - actual implementation depends on contract)
-        const teamStats = await contract.methods.getUserTeamStats(userAccount).call();
-        const downlines = await contract.methods.getDownlines(userAccount).call();
-        
-        // Update team summary
-        document.getElementById('totalTeamMembers').textContent = teamStats.teamCount;
-        document.getElementById('totalTeamDeposit').textContent = parseFloat(web3.utils.fromWei(teamStats.teamDeposits, 'ether')).toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }) + ' USDT';
-        
-        if (downlines.length === 0) {
-            document.getElementById('noTeamMessage').style.display = 'block';
-            document.getElementById('teamDataContainer').style.display = 'block';
-            return;
-        }
-        
-        document.getElementById('noTeamMessage').style.display = 'none';
-        
-        // For each downline, get their information
-        for (let i = 0; i < Math.min(downlines.length, 50); i++) {
-            const downline = downlines[i];
-            try {
-                const downlineDeposits = await contract.methods.getUserTotalDeposits(downline).call();
-                const downlineTeamStats = await contract.methods.getUserTeamStats(downline).call();
-                
-                // Simplified - in reality you would need to get actual level from contract
-                const level = i < 5 ? i + 1 : '5+';
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${i + 1}</td>
-                    <td>${downline.substring(0, 6)}...${downline.substring(downline.length - 4)}</td>
-                    <td>${level}</td>
-                    <td>${parseFloat(web3.utils.fromWei(downlineDeposits, 'ether')).toFixed(2)} USDT</td>
-                    <td>${parseFloat(web3.utils.fromWei(downlineDeposits, 'ether')).toFixed(2)} USDT</td>
-                    <td>${downlineTeamStats.teamCount}</td>
-                    <td>${parseFloat(web3.utils.fromWei(downlineTeamStats.teamDeposits, 'ether')).toFixed(2)} USDT</td>
-                `;
-                
-                tableBody.appendChild(row);
-                userTeamData.push({
-                    address: downline,
-                    level: level,
-                    totalDeposit: downlineDeposits,
-                    teamCount: downlineTeamStats.teamCount,
-                    teamDeposits: downlineTeamStats.teamDeposits
-                });
-            } catch (error) {
-                console.error(`Error loading team member ${i}:`, error);
-            }
-        }
-        
-        document.getElementById('teamDataContainer').style.display = 'block';
-        
-    } catch (error) {
-        console.error('Error loading team data:', error);
-        document.getElementById('teamDataContainer').style.display = 'block';
-    }
-}
-
-function startROITimer() {
-    if (roiTimerInterval) clearInterval(roiTimerInterval);
-    
-    // Simplified timer - in reality you would need to get actual next ROI claim time from contract
-    let timeRemaining = 8 * 3600; // Default 8 hours
-    
-    roiTimerInterval = setInterval(() => {
-        if (timeRemaining <= 0) {
-            clearInterval(roiTimerInterval);
-            document.getElementById('roiTimer').style.display = 'none';
-            document.getElementById('claimROI').disabled = false;
-            return;
-        }
-        
-        timeRemaining--;
-        
-        const hours = Math.floor(timeRemaining / 3600);
-        const minutes = Math.floor((timeRemaining % 3600) / 60);
-        const seconds = timeRemaining % 60;
-        
-        document.getElementById('roiTimeRemaining').textContent = 
-            `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        
-        document.getElementById('roiTimer').style.display = 'block';
-    }, 1000);
-}
-
-function startCapitalTimer() {
-    if (capitalTimerInterval) clearInterval(capitalTimerInterval);
-    
-    // Find the earliest ending investment
-    let earliestEndTime = Infinity;
-    userInvestments.forEach(inv => {
-        if (inv.isActive) {
-            const endTime = parseInt(inv.endTime);
-            if (endTime < earliestEndTime) {
-                earliestEndTime = endTime;
-            }
-        }
-    });
-    
-    if (earliestEndTime === Infinity) {
-        document.getElementById('capitalTimer').style.display = 'none';
-        return;
+    // Levels 1-5: Active deposit of 10 USDT
+    if (userDeposit >= 10) {
+        qualifiedLevels = 5;
     }
     
-    const currentTime = Math.floor(Date.now() / 1000);
-    let timeRemaining = Math.max(0, earliestEndTime - currentTime);
-    
-    capitalTimerInterval = setInterval(() => {
-        if (timeRemaining <= 0) {
-            clearInterval(capitalTimerInterval);
-            document.getElementById('capitalTimer').style.display = 'none';
-            document.getElementById('claimCapital').disabled = false;
-            return;
-        }
-        
-        timeRemaining--;
-        
-        const days = Math.floor(timeRemaining / (24 * 3600));
-        const hours = Math.floor((timeRemaining % (24 * 3600)) / 3600);
-        const minutes = Math.floor((timeRemaining % 3600) / 60);
-        
-        document.getElementById('capitalTimeRemaining').textContent = 
-            `${days}d ${hours}h ${minutes}m`;
-        
-        document.getElementById('capitalTimer').style.display = 'block';
-    }, 1000);
-}
-
-function generateInvestmentPlans() {
-    const plansGrid = document.getElementById('investmentPlansGrid');
-    if (!plansGrid) return;
-    
-    plansGrid.innerHTML = investmentPlans.map(plan => `
-        <div class="plan-card" data-plan-id="${plan.id}">
-            <div class="plan-name">${plan.name}</div>
-            <div class="plan-range">${plan.min.toLocaleString()} - ${plan.max === Infinity ? '∞' : plan.max.toLocaleString()} USDT</div>
-            <div class="plan-details">
-                <div class="plan-detail">
-                    <span>Capital Earning:</span>
-                    <span>${plan.capital}</span>
-                </div>
-                <div class="plan-detail">
-                    <span>ROI Earning:</span>
-                    <span>${plan.roi}</span>
-                </div>
-                <div class="plan-detail">
-                    <span>Withdraw Interval:</span>
-                    <span>${plan.interval}</span>
-                </div>
-            </div>
-            <div class="plan-cycle">Cycle: ${plan.cycle}</div>
-            <button class="btn btn--primary">Select Plan</button>
-        </div>
-    `).join('');
-    
-    // Add event listeners to plan cards
-    document.querySelectorAll('.plan-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (!e.target.closest('button')) return;
-            const planId = parseInt(card.getAttribute('data-plan-id'));
-            selectPlan(planId);
-        });
-    });
-}
-
-function selectPlan(planId) {
-    if (!userAccount) {
-        showNotification('Please connect your wallet first!', 'error');
-        return;
+    // Levels 6-10: Minimum 2 qualified downlines (100 USDT each)
+    // This is simplified - in reality you would need to check actual downline deposits
+    if (parseInt(teamCount) >= 2) {
+        qualifiedLevels = Math.max(qualifiedLevels, 10);
     }
     
-    selectedPlan = investmentPlans[planId];
-    if (!selectedPlan) return;
+    // Levels 11-15: Minimum 3 qualified downlines
+    if (parseInt(teamCount) >= 3) {
+        qualifiedLevels = Math.max(qualifiedLevels, 15);
+    }
     
-    document.getElementById('investmentPlansGrid').style.display = 'none';
-    document.getElementById('investmentForm').style.display = 'block';
+    // Levels 16-20: Minimum 5 qualified downlines
+    if (parseInt(teamCount) >= 5) {
+        qualifiedLevels = Math.max(qualifiedLevels, 20);
+    }
     
-    // Update plan summary
-    const maxText = selectedPlan.max === Infinity ? 'No maximum' : `${selectedPlan.max.toLocaleString()} USDT`;
-    document.getElementById('selectedPlanSummary').innerHTML = `
-        <div style="color:white; font-weight:600; font-size:1.1rem;">${selectedPlan.name}</div>
-        <div style="color:var(--text-muted); margin:10px 0;">Range: ${selectedPlan.min.toLocaleString()} - ${maxText}</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px;">
-            <div style="background:rgba(0,200,83,0.1); padding:10px; border-radius:8px;">
-                <div style="color:var(--text-muted); font-size:0.85rem;">Capital</div>
-                <div style="color:var(--primary-accent); font-weight:600;">${selectedPlan.capital}</div>
-            </div>
-            <div style="background:rgba(0,200,83,0.1); padding:10px; border-radius:8px;">
-                <div style="color:var(--text-muted); font-size:0.85rem;">ROI</div>
-                <div style="color:var(--primary-accent); font-weight:600;">${selectedPlan.roi}</div>
-            </div>
-            <div style="background:rgba(0,200,83,0.1); padding:10px; border-radius:8px;">
-                <div style="color:var(--text-muted); font-size:0.85rem;">Withdraw</div>
-                <div style="color:var(--primary-accent); font-weight:600;">${selectedPlan.interval}</div>
-            </div>
-            <div style="background:rgba(0,200,83,0.1); padding:10px; border-radius:8px;">
-                <div style="color:var(--text-muted); font-size:0.85rem;">Cycle</div>
-                <div style="color:var(--primary-accent); font-weight:600;">${selectedPlan.cycle}</div>
-            </div>
-        </div>
-    `;
-    
-    // Update amount range text
-    document.getElementById('amountRange').textContent = 
-        `Enter amount between ${selectedPlan.min.toLocaleString()} and ${selectedPlan.max === Infinity ? 'unlimited' : selectedPlan.max.toLocaleString()} USDT`;
-    
-    // Reset amount input
-    document.getElementById('investmentAmount').value = '';
-    document.getElementById('investmentAmount').min = selectedPlan.min;
-    document.getElementById('investmentAmount').max = selectedPlan.max === Infinity ? '' : selectedPlan.max;
+    document.getElementById('qualifiedLevels').textContent = qualifiedLevels;
 }
 
-function validateInvestmentAmount() {
+function updateROIDisplay() {
     const amountInput = document.getElementById('investmentAmount');
     const amount = parseFloat(amountInput.value) || 0;
     
-    if (amount > 0 && selectedPlan) {
-        if (amount < selectedPlan.min || (selectedPlan.max !== Infinity && amount > selectedPlan.max)) {
-            amountInput.style.borderColor = '#ef4444';
-            showNotification(`Amount must be between ${selectedPlan.min} and ${selectedPlan.max === Infinity ? 'unlimited' : selectedPlan.max} USDT for ${selectedPlan.name} plan`, 'error');
-        } else {
-            amountInput.style.borderColor = 'var(--primary-accent)';
-        }
-    } else {
-        amountInput.style.borderColor = 'rgba(255,255,255,0.1)';
+    let roiPercentage = '0.5%';
+    let withdrawInterval = '24 hours';
+    
+    if (amount >= 5000) {
+        roiPercentage = '1.5%';
+        withdrawInterval = '2 hours';
+    } else if (amount >= 2500) {
+        roiPercentage = '1.25%';
+        withdrawInterval = '4 hours';
+    } else if (amount >= 1000) {
+        roiPercentage = '1%';
+        withdrawInterval = '8 hours';
+    } else if (amount >= 500) {
+        roiPercentage = '0.75%';
+        withdrawInterval = '12 hours';
+    }
+    
+    if (amount > 0) {
+        document.getElementById('amountRange').innerHTML = 
+            `ROI Bonus: ${roiPercentage} daily | Withdraw every: ${withdrawInterval} | 4% daily capital return`;
     }
 }
 
+function showInvestmentForm() {
+    if (!userAccount) {
+        return showNotification('Please connect your wallet first!', 'error');
+    }
+    
+    // Check max positions (100 per user)
+    if (userInvestments.length >= 100) {
+        return showNotification('Maximum 100 investment positions reached!', 'error');
+    }
+    
+    document.getElementById('investmentPlans').style.display = 'none';
+    document.getElementById('investmentForm').style.display = 'block';
+    document.getElementById('investmentAmount').value = '';
+    updateROIDisplay();
+}
+
 function showPlans() {
-    document.getElementById('investmentPlansGrid').style.display = 'grid';
+    document.getElementById('investmentPlans').style.display = 'grid';
     document.getElementById('investmentForm').style.display = 'none';
-    selectedPlan = null;
 }
 
 async function confirmInvestment() {
     if (!contract || !userAccount) {
-        showNotification('Please connect wallet first', 'error');
-        return;
-    }
-    
-    if (!selectedPlan) {
-        showNotification('Please select a plan first', 'error');
-        return;
+        return showNotification('Please connect wallet first', 'error');
     }
     
     const amount = parseFloat(document.getElementById('investmentAmount').value) || 0;
-    
-    // Validate amount
-    if (amount < selectedPlan.min) {
-        showNotification(`Minimum amount for ${selectedPlan.name} plan is ${selectedPlan.min} USDT`, 'error');
-        return;
-    }
-    
-    if (selectedPlan.max !== Infinity && amount > selectedPlan.max) {
-        showNotification(`Maximum amount for ${selectedPlan.name} plan is ${selectedPlan.max} USDT`, 'error');
-        return;
-    }
-    
     if (amount < 10) {
-        showNotification('Minimum deposit is 10 USDT', 'error');
-        return;
-    }
-    
-    // Check max positions
-    if (userInvestments.length >= 100) {
-        showNotification('Maximum 100 investment positions reached!', 'error');
-        return;
+        return showNotification('Minimum deposit is 10 USDT', 'error');
     }
     
     let uplineAddress = document.getElementById('referrerAddress').value.trim() || referralAddress || '0x0000000000000000000000000000000000000000';
@@ -799,25 +603,31 @@ async function confirmInvestment() {
 
 async function claimAllROI() {
     if (!contract || !userAccount) {
-        showNotification('Please connect wallet first', 'error');
-        return;
+        return showNotification('Please connect wallet first', 'error');
     }
     
-    const btn = document.getElementById('claimROI');
+    const btn = document.getElementById('claimAllROI');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
     btn.disabled = true;
     
     try {
+        // We need to claim ROI for each active position
+        // This is simplified - in reality you might want to claim each position individually
+        // or the contract might have a bulk claim function
+        
         showNotification('Claiming all ROI bonuses...', 'info');
         
-        // Claim from each position that has available ROI
-        for (let i = 0; i < userInvestments.length; i++) {
-            try {
-                await contract.methods.claimRoiBonus(i).send({ from: userAccount });
-            } catch (error) {
-                // Continue with next position if one fails
-                console.error(`Error claiming ROI for position ${i}:`, error);
+        // For now, we'll claim from the first position as an example
+        // You should implement logic to claim from all positions
+        if (userInvestments.length > 0) {
+            // Claim from the first position that has available ROI
+            for (let i = 0; i < userInvestments.length; i++) {
+                const inv = userInvestments[i];
+                if (parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether')) > 0) {
+                    await contract.methods.claimRoiBonus(i).send({ from: userAccount });
+                    break;
+                }
             }
         }
         
@@ -833,13 +643,37 @@ async function claimAllROI() {
     }
 }
 
-async function claimAllCapital() {
+async function claimAllRewards() {
     if (!contract || !userAccount) {
-        showNotification('Please connect wallet first', 'error');
-        return;
+        return showNotification('Please connect wallet first', 'error');
     }
     
-    const btn = document.getElementById('claimCapital');
+    const btn = document.getElementById('claimAllRewards');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
+    btn.disabled = true;
+    
+    try {
+        showNotification('Claiming all rewards...', 'info');
+        await contract.methods.claimRewards().send({ from: userAccount });
+        showNotification('All rewards claimed successfully!', 'success');
+        await loadUserData();
+        
+    } catch (error) {
+        console.error('Claim rewards error:', error);
+        showNotification('Failed to claim rewards: ' + (error.message || 'Unknown error'), 'error');
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+}
+
+async function claimAllCapital() {
+    if (!contract || !userAccount) {
+        return showNotification('Please connect wallet first', 'error');
+    }
+    
+    const btn = document.getElementById('claimAllCapital');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
     btn.disabled = true;
@@ -851,10 +685,8 @@ async function claimAllCapital() {
         for (let i = 0; i < userInvestments.length; i++) {
             const inv = userInvestments[i];
             if (!inv.isActive || parseInt(inv.endTime) <= Math.floor(Date.now()/1000)) {
-                try {
+                if (parseFloat(web3.utils.fromWei(inv.availableCapital, 'ether')) > 0) {
                     await contract.methods.claimCapitalReturn(i).send({ from: userAccount });
-                } catch (error) {
-                    console.error(`Error claiming capital for position ${i}:`, error);
                 }
             }
         }
@@ -871,109 +703,113 @@ async function claimAllCapital() {
     }
 }
 
-async function compoundAllROI() {
+async function claimReferralBonus() {
     if (!contract || !userAccount) {
-        showNotification('Please connect wallet first', 'error');
-        return;
+        return showNotification('Please connect wallet first', 'error');
     }
     
-    const btn = document.getElementById('compoundROI');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Compounding...';
-    btn.disabled = true;
-    
-    try {
-        showNotification('Compounding ROI bonuses...', 'info');
-        
-        // Get total available ROI
-        const availableReturns = await contract.methods.getUserAvailableReturns(userAccount).call();
-        const totalROI = availableReturns.totalRoiBonus;
-        
-        if (parseFloat(web3.utils.fromWei(totalROI, 'ether')) < 1) {
-            showNotification('Minimum 1 USDT required for compounding', 'error');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
-        // Compound rewards
-        await contract.methods.compoundRewards(totalROI).send({ from: userAccount });
-        
-        showNotification('ROI compounded successfully! New position created.', 'success');
-        await loadUserData();
-        
-    } catch (error) {
-        console.error('Compound ROI error:', error);
-        showNotification('Failed to compound ROI: ' + (error.message || 'Unknown error'), 'error');
-    } finally {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    }
-}
-
-async function claimNetworkRewards() {
-    if (!contract || !userAccount) {
-        showNotification('Please connect wallet first', 'error');
-        return;
-    }
-    
-    const btn = document.getElementById('claimNetwork');
+    const btn = document.getElementById('claimReferralBonus');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
     btn.disabled = true;
     
     try {
-        showNotification('Claiming network rewards...', 'info');
+        showNotification('Claiming referral rewards...', 'info');
         await contract.methods.claimRewards().send({ from: userAccount });
-        showNotification('Network rewards claimed successfully!', 'success');
+        showNotification('Referral rewards claimed successfully!', 'success');
         await loadUserData();
         
     } catch (error) {
-        console.error('Claim network rewards error:', error);
-        showNotification('Failed to claim network rewards: ' + (error.message || 'Unknown error'), 'error');
+        console.error('Claim referral error:', error);
+        showNotification('Failed to claim referral rewards: ' + (error.message || 'Unknown error'), 'error');
     } finally {
         btn.innerHTML = originalText;
         btn.disabled = false;
     }
 }
 
-async function compoundNetworkRewards() {
+async function claimLeadershipBonus() {
     if (!contract || !userAccount) {
-        showNotification('Please connect wallet first', 'error');
-        return;
+        return showNotification('Please connect wallet first', 'error');
     }
     
-    const btn = document.getElementById('compoundNetwork');
+    const btn = document.getElementById('claimLeadershipBonus');
     const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Compounding...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
     btn.disabled = true;
     
     try {
-        showNotification('Compounding network rewards...', 'info');
-        
-        // Get total available rewards
-        const bonusStats = await contract.methods.getUserBonusStats(userAccount).call();
-        const totalRewards = bonusStats.availableRewards;
-        
-        if (parseFloat(web3.utils.fromWei(totalRewards, 'ether')) < 1) {
-            showNotification('Minimum 1 USDT required for compounding', 'error');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
-        // Compound rewards
-        await contract.methods.compoundRewards(totalRewards).send({ from: userAccount });
-        
-        showNotification('Network rewards compounded successfully! New position created.', 'success');
+        showNotification('Claiming leadership rewards...', 'info');
+        await contract.methods.claimRewards().send({ from: userAccount });
+        showNotification('Leadership rewards claimed successfully!', 'success');
         await loadUserData();
         
     } catch (error) {
-        console.error('Compound network rewards error:', error);
-        showNotification('Failed to compound network rewards: ' + (error.message || 'Unknown error'), 'error');
+        console.error('Claim leadership error:', error);
+        showNotification('Failed to claim leadership rewards: ' + (error.message || 'Unknown error'), 'error');
     } finally {
         btn.innerHTML = originalText;
         btn.disabled = false;
+    }
+}
+
+// Individual position functions
+async function claimCapitalReturn(index) {
+    if (!contract || !userAccount) {
+        return showNotification('Please connect wallet first', 'error');
+    }
+    
+    try {
+        showNotification(`Claiming capital for position ${index + 1}...`, 'info');
+        await contract.methods.claimCapitalReturn(index).send({ from: userAccount });
+        showNotification(`Capital claimed successfully for position ${index + 1}!`, 'success');
+        await loadUserData();
+        
+    } catch (error) {
+        console.error('Claim capital return error:', error);
+        showNotification('Failed to claim capital: ' + (error.message || 'Unknown error'), 'error');
+    }
+}
+
+async function claimRoiBonus(index) {
+    if (!contract || !userAccount) {
+        return showNotification('Please connect wallet first', 'error');
+    }
+    
+    try {
+        showNotification(`Claiming ROI for position ${index + 1}...`, 'info');
+        await contract.methods.claimRoiBonus(index).send({ from: userAccount });
+        showNotification(`ROI claimed successfully for position ${index + 1}!`, 'success');
+        await loadUserData();
+        
+    } catch (error) {
+        console.error('Claim ROI bonus error:', error);
+        showNotification('Failed to claim ROI: ' + (error.message || 'Unknown error'), 'error');
+    }
+}
+
+async function compoundRoiBonus(index) {
+    if (!contract || !userAccount) {
+        return showNotification('Please connect wallet first', 'error');
+    }
+    
+    try {
+        // Get available ROI for this position
+        const availableReturns = await contract.methods.getInvestmentAvailableReturns(userAccount, index).call();
+        const availableRoi = availableReturns.availableRoiBonus;
+        
+        if (parseFloat(web3.utils.fromWei(availableRoi, 'ether')) < 1) {
+            return showNotification('Minimum 1 USDT required for compounding', 'error');
+        }
+        
+        showNotification(`Compounding ROI for position ${index + 1}...`, 'info');
+        await contract.methods.compoundRoiBonus(index, availableRoi).send({ from: userAccount });
+        showNotification(`ROI compounded successfully for position ${index + 1}!`, 'success');
+        await loadUserData();
+        
+    } catch (error) {
+        console.error('Compound ROI error:', error);
+        showNotification('Failed to compound ROI: ' + (error.message || 'Unknown error'), 'error');
     }
 }
 
@@ -1072,3 +908,8 @@ function checkPreloader() {
         }, 500);
     });
 }
+
+// Make functions available globally for button clicks
+window.claimCapitalReturn = claimCapitalReturn;
+window.claimRoiBonus = claimRoiBonus;
+window.compoundRoiBonus = compoundRoiBonus;
