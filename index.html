@@ -40,7 +40,6 @@
                     <li class="nav__item"><a class="nav__link" data-section="invest">Invest</a></li>
                     <li class="nav__item"><a class="nav__link" data-section="referral">Referral</a></li>
                     <li class="nav__item"><a class="nav__link" data-section="leadership">Leadership</a></li>
-                    <li class="nav__item"><a class="nav__link" data-section="team">Team Data</a></li>
                     <li class="nav__item"><a class="nav__link" data-section="faq">FAQ</a></li>
                 </ul>
 
@@ -128,111 +127,73 @@
                     <span>Please connect your wallet to view your dashboard</span>
                 </div>
 
-                <!-- Two Income Tables -->
-                <div class="income-tables" id="incomeTables" style="display: none;">
-                    <div class="income-table-container">
-                        <div class="table-header">
-                            <h3><i class="fas fa-coins"></i> Investment Income</h3>
-                        </div>
-                        <div class="table-content">
-                            <div class="income-row">
-                                <span class="income-label">Total Deposit</span>
-                                <span class="income-value" id="totalDeposit">0 USDT</span>
-                            </div>
-                            <div class="income-row">
-                                <span class="income-label">Capital Earning</span>
-                                <span class="income-value" id="capitalEarning">0 USDT</span>
-                            </div>
-                            <div class="income-row">
-                                <span class="income-label">ROI Earning</span>
-                                <span class="income-value" id="roiEarning">0 USDT</span>
-                            </div>
-                        </div>
-                        <div class="table-actions">
-                            <button class="btn btn--primary btn-sm" id="claimROI" disabled>
-                                <i class="fas fa-download"></i> Claim ROI
-                            </button>
-                            <button class="btn btn--outline btn-sm" id="claimCapital" disabled>
-                                <i class="fas fa-university"></i> Claim Capital
-                            </button>
-                            <button class="btn btn--outline btn-sm" id="compoundROI">
-                                <i class="fas fa-recycle"></i> Compound
-                            </button>
-                        </div>
-                        <div class="timer-display" id="roiTimer" style="display: none;">
-                            <span>Next ROI Claim in: </span>
-                            <span id="roiTimeRemaining">00:00:00</span>
-                        </div>
-                        <div class="timer-display" id="capitalTimer" style="display: none;">
-                            <span>Capital Available in: </span>
-                            <span id="capitalTimeRemaining">00:00:00</span>
+                <div class="quick-stats" id="quickStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalDeposits">0 USDT</div>
+                            <div class="stat-label">Total Deposits</div>
                         </div>
                     </div>
-
-                    <div class="income-table-container">
-                        <div class="table-header">
-                            <h3><i class="fas fa-users"></i> Network Income</h3>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="availableCapital">0 USDT</div>
+                            <div class="stat-label">Available Capital</div>
                         </div>
-                        <div class="table-content">
-                            <div class="income-row">
-                                <span class="income-label">Referral Earning</span>
-                                <span class="income-value" id="referralEarning">0 USDT</span>
-                            </div>
-                            <div class="income-row">
-                                <span class="income-label">Onboarding Earning</span>
-                                <span class="income-value" id="onboardingEarning">0 USDT</span>
-                            </div>
-                            <div class="income-row">
-                                <span class="income-label">Leadership Earning</span>
-                                <span class="income-value" id="leadershipEarning">0 USDT</span>
-                            </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="availableRoi">0 USDT</div>
+                            <div class="stat-label">Available ROI</div>
                         </div>
-                        <div class="table-actions">
-                            <button class="btn btn--primary btn-sm" id="claimNetwork">
-                                <i class="fas fa-download"></i> Claim Network
-                            </button>
-                            <button class="btn btn--outline btn-sm" id="compoundNetwork">
-                                <i class="fas fa-recycle"></i> Compound
-                            </button>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-gift"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="availableRewards">0 USDT</div>
+                            <div class="stat-label">Available Rewards</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- My Positions Section -->
-                <div class="positions-section" id="positionsSection" style="display: none; margin-top: 30px;">
-                    <div class="section__header" style="margin-bottom: 20px;">
-                        <h3 class="section__title" style="font-size: 1.5rem;">My Positions</h3>
-                        <p class="section__subtitle" style="font-size: 0.9rem;">History of deposits and compound ROI/Network</p>
-                    </div>
-                    
-                    <div class="positions-table-container">
-                        <div class="table-responsive">
-                            <table class="positions-table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Type</th>
-                                        <th>Amount</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Plan</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="positionsTableBody">
-                                    <!-- Positions will be loaded here -->
-                                </tbody>
-                            </table>
+                <div class="action-buttons" id="actionButtons" style="display: none;">
+                    <button class="btn btn--primary" data-section="invest">
+                        <i class="fas fa-plus-circle"></i> New Deposit
+                    </button>
+                    <button class="btn btn--outline" id="claimAllROI">
+                        <i class="fas fa-download"></i> Claim All ROI
+                    </button>
+                    <button class="btn btn--outline" id="claimAllRewards">
+                        <i class="fas fa-gift"></i> Claim All Rewards
+                    </button>
+                    <button class="btn btn--primary" id="claimAllCapital" style="display: none;">
+                        <i class="fas fa-university"></i> Claim All Capital
+                    </button>
+                </div>
+
+                <!-- Investment Positions Section -->
+                <div class="investment-history-container" id="investmentHistorySection" style="display: none; margin-top: 40px;">
+                    <div class="investment-history-header">
+                        <h3 style="font-size: 1.5rem;">My Investment Positions</h3>
+                        <div class="investment-count" style="color: var(--text-muted);">
+                            Active: <span id="activePositions">0</span> / Total: <span id="totalPositions">0</span>
                         </div>
                     </div>
                     
-                    <div class="empty-state" id="noPositionsMessage" style="display: none; margin-top: 30px;">
-                        <div class="empty-icon"><i class="fas fa-chart-pie"></i></div>
-                        <h3>No Positions Yet</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;">Make your first deposit to start earning</p>
-                        <button class="btn btn--primary" data-section="invest">
-                            <i class="fas fa-rocket"></i> Start Investing
-                        </button>
+                    <div class="investment-history-list" id="investmentHistoryList">
+                        <!-- Investment positions will be generated here -->
                     </div>
+                </div>
+                
+                <div class="empty-state" id="noInvestmentsMessage" style="display: none;">
+                    <div class="empty-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>No Active Investments</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Make your first deposit to start earning daily returns</p>
+                    <button class="btn btn--primary" data-section="invest">
+                        <i class="fas fa-rocket"></i> Start Investing
+                    </button>
                 </div>
             </div>
         </section>
@@ -241,8 +202,13 @@
         <section class="section" id="invest" style="display: none;">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">Choose Investment Plan</h2>
-                    <p class="section__subtitle">Select a plan that matches your investment goals</p>
+                    <h2 class="section__title">Make a Deposit</h2>
+                    <p class="section__subtitle">Minimum deposit: 10 USDT | 25-day cycle | 4% daily capital return</p>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span><strong>Note:</strong> 10% admin fee will be automatically deducted and sent to admin wallet (does not reduce your deposit amount)</span>
                 </div>
 
                 <div class="alert alert-warning" id="investWalletAlert">
@@ -250,23 +216,64 @@
                     <span>Please connect your wallet to make a deposit</span>
                 </div>
 
-                <div class="investment-plans-grid" id="investmentPlansGrid">
-                    <!-- 5 Plans will be generated by JavaScript -->
+                <div class="investment-plans" id="investmentPlans">
+                    <div class="plan-card featured">
+                        <div class="plan-name">Standard Investment</div>
+                        <div class="plan-roi">4% Daily Capital + ROI Bonus</div>
+                        <div class="plan-range">10+ USDT</div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 4% Daily Capital Return (25 days)</li>
+                            <li><i class="fas fa-check"></i> ROI Bonus: 0.5% - 1.5% daily</li>
+                            <li><i class="fas fa-check"></i> 25-day investment cycle</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Auto per-second distribution</li>
+                        </ul>
+                        <div class="plan-total">Total Returns: Capital + ROI after 25 days</div>
+                        <button class="btn btn--primary" id="startInvestBtn">
+                            Make Deposit
+                        </button>
+                    </div>
                 </div>
 
                 <div class="investment-form-container" id="investmentForm" style="display: none;">
                     <div class="card__header">
                         <h2>Complete Your Deposit</h2>
                         <button class="btn btn--outline btn-sm" id="backToPlans">
-                            <i class="fas fa-arrow-left"></i> Back to Plans
+                            <i class="fas fa-arrow-left"></i> Back
                         </button>
                     </div>
 
                     <div class="investment-form">
                         <div class="form-group" style="margin-bottom: 20px;">
-                            <label>Selected Plan</label>
-                            <div class="plan-summary" id="selectedPlanSummary">
-                                <!-- Plan details will be shown here -->
+                            <label>ROI Bonus Rates Based on Deposit Amount</label>
+                            <div class="plan-summary">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">10-499 USDT</div>
+                                        <div style="color:var(--primary-accent);">0.5% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 24h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">500-999 USDT</div>
+                                        <div style="color:var(--primary-accent);">0.75% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 12h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">1000-2499 USDT</div>
+                                        <div style="color:var(--primary-accent);">1% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 8h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px;">
+                                        <div style="color:white; font-weight:600;">2500-4999 USDT</div>
+                                        <div style="color:var(--primary-accent);">1.25% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 4h</div>
+                                    </div>
+                                    <div style="background: rgba(0,200,83,0.1); padding: 10px; border-radius: 8px; grid-column: span 2;">
+                                        <div style="color:white; font-weight:600;">5000+ USDT</div>
+                                        <div style="color:var(--primary-accent);">1.5% ROI daily</div>
+                                        <div style="color:var(--text-muted); font-size:0.8rem;">Withdraw every 2h</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -274,7 +281,7 @@
                             <label for="investmentAmount">Deposit Amount (USDT)</label>
                             <input type="number" id="investmentAmount" class="form-input" placeholder="0.00" min="10" step="0.01">
                             <div class="amount-range" id="amountRange" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
-                                Enter amount within plan range
+                                Minimum: 10 USDT | No maximum limit | Max 100 positions per user
                             </div>
                         </div>
 
@@ -319,6 +326,43 @@
                     <span>Please connect your wallet to access referral program</span>
                 </div>
 
+                <div class="referral-stats" id="referralStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-gift"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="referralEarnings">0 USDT</div>
+                            <div class="stat-label">Referral Earnings</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="onboardingEarnings">0 USDT</div>
+                            <div class="stat-label">Onboarding Bonus</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalDownlines">0</div>
+                            <div class="stat-label">Total Downlines</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="qualifiedLevels">0</div>
+                            <div class="stat-label">Qualified Levels</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" id="referralActionButtons" style="display: none; margin-bottom: 30px;">
+                    <button class="btn btn--primary" id="claimReferralBonus">
+                        <i class="fas fa-download"></i> Claim Referral Rewards
+                    </button>
+                </div>
+
                 <div class="referral-link-container" id="referralLinkSection" style="display: none; text-align: center; margin-bottom: 40px;">
                     <h2 style="margin-bottom: 10px; font-size: 1.5rem;">Your Referral Link</h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">Share this link to grow your network and earn commissions</p>
@@ -351,66 +395,45 @@
                     <span>Please connect your wallet to view leadership program</span>
                 </div>
 
+                <div class="leadership-stats" id="leadershipStats" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-crown"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="leadershipEarnings">0 USDT</div>
+                            <div class="stat-label">Leadership Earnings</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-medal"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="currentRank">-</div>
+                            <div class="stat-label">Current Rank</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="teamMembers">0</div>
+                            <div class="stat-label">Team Members</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="teamDeposits">0 USDT</div>
+                            <div class="stat-label">Team Deposits</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" id="leadershipActionButtons" style="display: none; margin-bottom: 30px;">
+                    <button class="btn btn--primary" id="claimLeadershipBonus">
+                        <i class="fas fa-download"></i> Claim Leadership Rewards
+                    </button>
+                </div>
+
                 <div class="leadership-levels-compact" id="leadershipLevelsCompact">
                     <!-- 7 Ranks will be generated by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Data Section -->
-        <section class="section" id="team" style="display: none;">
-            <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">Team Data</h2>
-                    <p class="section__subtitle">View detailed information about your team members</p>
-                </div>
-
-                <div class="alert alert-warning" id="teamWalletAlert">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>Please connect your wallet to view team data</span>
-                </div>
-
-                <div class="team-data-container" id="teamDataContainer" style="display: none;">
-                    <div class="team-summary">
-                        <div class="team-stat">
-                            <div class="team-stat-value" id="totalTeamMembers">0</div>
-                            <div class="team-stat-label">Total Team</div>
-                        </div>
-                        <div class="team-stat">
-                            <div class="team-stat-value" id="totalTeamDeposit">0 USDT</div>
-                            <div class="team-stat-label">Volume Team</div>
-                        </div>
-                    </div>
-
-                    <div class="team-table-container">
-                        <div class="table-responsive">
-                            <table class="team-table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Wallet Address</th>
-                                        <th>Level</th>
-                                        <th>Total Deposit</th>
-                                        <th>Active Deposit</th>
-                                        <th>Total Team</th>
-                                        <th>Volume Team</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="teamTableBody">
-                                    <!-- Team data will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="empty-state" id="noTeamMessage" style="display: none; margin-top: 30px;">
-                        <div class="empty-icon"><i class="fas fa-users"></i></div>
-                        <h3>No Team Members Yet</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;">Share your referral link to start building your team</p>
-                        <button class="btn btn--primary" data-section="referral">
-                            <i class="fas fa-share-alt"></i> Go to Referral
-                        </button>
-                    </div>
                 </div>
             </div>
         </section>
