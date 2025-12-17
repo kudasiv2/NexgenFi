@@ -1,5 +1,5 @@
 // Updated contract address and ABI for new contract
-const CONTRACT_ADDRESS = '0x00e4bBDF89B7041349EB27e2f0165fFD21162FAC';
+const CONTRACT_ADDRESS = '0x3eCCC758B9a82D2eB543Dc13433B9beaA46baBF9';
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
 const READ_ONLY_RPC = 'https://bsc-dataseed1.binance.org/';
 
@@ -10,7 +10,7 @@ const USDT_ABI = [
     {"constant": true, "inputs": [], "name": "decimals", "outputs": [{"name": "", "type": "uint8"}], "type": "function"}
 ];
 
-const CONTRACT_ABI = [{"inputs":[{"internalType":"address","name":"_usdtAddress","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"CapitalReturnWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"bool","name":"isRoi","type":"bool"}],"name":"Compounded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":true,"internalType":"address","name":"upline","type":"address"}],"name":"Deposited","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"HarvestExpiredFunds","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"rankIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"LeadershipBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"downline","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"OnboardingBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"downline","type":"address"},{"indexed":false,"internalType":"uint256","name":"level","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"ReferralBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"totalAmount","type":"uint256"}],"name":"RewardWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"RoiBonusWithdrawn","type":"event"},{"inputs":[],"name":"ADMIN_FEE_PERCENT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ADMIN_WALLET","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"CAPITAL_RETURN_PERCENT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"CYCLE_DURATION","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MIN_DEPOSIT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MIN_WITHDRAW","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_BONUS_100","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_BONUS_50","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_THRESHOLD_100","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_THRESHOLD_50","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"SECONDS_PER_DAY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"claimCapitalReturn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claimRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"claimRoiBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"compoundRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"compoundRoiBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"upline","type":"address"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAdminFeePercent","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"getAvailableCapitalReturn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"getAvailableRoiBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBonusStats","outputs":[{"internalType":"uint256","name":"totalReferralPayout","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingPayout","type":"uint256"},{"internalType":"uint256","name":"totalLeadershipPayout","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCapitalReturnPercent","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"getContractBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCycleDuration","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getDownlines","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getGlobalStats","outputs":[{"internalType":"uint256","name":"contractBalance","type":"uint256"},{"internalType":"uint256","name":"investorsCount","type":"uint256"},{"internalType":"uint256","name":"totalInvestment","type":"uint256"},{"internalType":"uint256","name":"totalPayout","type":"uint256"},{"internalType":"uint256","name":"totalPositionsCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"capitalReturnClaimed","type":"uint256"},{"internalType":"uint256","name":"roiBonusClaimed","type":"uint256"},{"internalType":"uint256","name":"lastRoiWithdrawTime","type":"uint256"},{"internalType":"uint256","name":"planIndex","type":"uint256"},{"internalType":"bool","name":"isActive","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentReturns","outputs":[{"internalType":"uint256","name":"availableRoiBonus","type":"uint256"},{"internalType":"uint256","name":"availableCapitalReturn","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getInvestmentsCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getMinDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"getPlanIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"levelGroup","type":"uint256"}],"name":"getQualifiedDownlines","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalInvested","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalPaidOut","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalUsers","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserAvailableReturns","outputs":[{"internalType":"uint256","name":"totalCapitalReturn","type":"uint256"},{"internalType":"uint256","name":"totalRoiBonus","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserBasicInfo","outputs":[{"internalType":"address","name":"upline","type":"address"},{"internalType":"uint256","name":"totalDeposits","type":"uint256"},{"internalType":"uint256","name":"totalWithdrawn","type":"uint256"},{"internalType":"uint256","name":"positionsCount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserBonusInfo","outputs":[{"internalType":"uint256","name":"totalReferralBonus","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingBonus","type":"uint256"},{"internalType":"uint256","name":"availableRewards","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserExpiredReferral","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserRank","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserReferralBonus","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserStatusInfo","outputs":[{"internalType":"bool","name":"hasDeposited","type":"bool"},{"internalType":"uint256","name":"lastDepositTime","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserTeamInfo","outputs":[{"internalType":"uint256","name":"teamCount","type":"uint256"},{"internalType":"uint256","name":"teamDeposits","type":"uint256"},{"internalType":"string","name":"rank","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"harvestExpiredFunds","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"planThresholds","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"ranks","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"uint256","name":"requiredTeam","type":"uint256"},{"internalType":"uint256","name":"requiredDeposit","type":"uint256"},{"internalType":"uint256","name":"bonusPercent","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"referralBonuses","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"roiBonusPercentages","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"roiWithdrawIntervals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalInvested","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalInvestors","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalLeadershipPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalOnboardingPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalPositions","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalReferralPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalWithdrawn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"usdtToken","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"}];
+const CONTRACT_ABI = [{"inputs":[{"internalType":"address","name":"_usdtAddress","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"CapitalReturnWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"bool","name":"isRoi","type":"bool"}],"name":"Compounded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":true,"internalType":"address","name":"upline","type":"address"}],"name":"Deposited","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"rankIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"LeadershipBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"downline","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"OnboardingBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"promoter","type":"address"},{"indexed":false,"internalType":"uint256","name":"depositAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"planIndex","type":"uint256"}],"name":"PromoterAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"referrer","type":"address"},{"indexed":true,"internalType":"address","name":"downline","type":"address"},{"indexed":false,"internalType":"uint256","name":"level","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"ReferralBonusEarned","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"ReferralExpiredWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"totalAmount","type":"uint256"}],"name":"RewardWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"RoiBonusWithdrawn","type":"event"},{"inputs":[],"name":"ADMIN_FEE_PERCENT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ADMIN_WALLET","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"CAPITAL_RETURN_PERCENT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"CYCLE_DURATION","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MIN_DEPOSIT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MIN_WITHDRAW","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_BONUS_100","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_BONUS_50","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_THRESHOLD_100","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ONBOARDING_THRESHOLD_50","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"SECONDS_PER_DAY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"claimCapitalReturn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claimRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"}],"name":"claimRoiBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"compoundRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"investmentIndex","type":"uint256"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"compoundRoiBonus","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"upline","type":"address"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAdminFeePercent","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"getBonusStats","outputs":[{"internalType":"uint256","name":"totalReferralPayout","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingPayout","type":"uint256"},{"internalType":"uint256","name":"totalLeadershipPayout","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCapitalReturnPercent","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"getContractBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCycleDuration","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getDownlines","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getGlobalStats","outputs":[{"internalType":"uint256","name":"contractBalance","type":"uint256"},{"internalType":"uint256","name":"investorsCount","type":"uint256"},{"internalType":"uint256","name":"totalInvestment","type":"uint256"},{"internalType":"uint256","name":"totalPayout","type":"uint256"},{"internalType":"uint256","name":"totalPositionsCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getInvestmentDetails","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"startTime","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"},{"internalType":"uint256","name":"availableRoi","type":"uint256"},{"internalType":"uint256","name":"availableCapital","type":"uint256"},{"internalType":"uint256","name":"nextWithdrawTime","type":"uint256"},{"internalType":"uint256","name":"planIndex","type":"uint256"},{"internalType":"bool","name":"isActive","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getInvestmentsCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getMinDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"getOnboardingBonusDetails","outputs":[{"internalType":"uint256","name":"threshold50","type":"uint256"},{"internalType":"uint256","name":"threshold100","type":"uint256"},{"internalType":"uint256","name":"bonus50","type":"uint256"},{"internalType":"uint256","name":"bonus100","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"getPlanDetails","outputs":[{"internalType":"uint256[5]","name":"thresholds","type":"uint256[5]"},{"internalType":"uint256[5]","name":"roiPercentages","type":"uint256[5]"},{"internalType":"uint256[5]","name":"withdrawIntervals","type":"uint256[5]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getRankDetails","outputs":[{"internalType":"string[7]","name":"names","type":"string[7]"},{"internalType":"uint256[7]","name":"requiredTeams","type":"uint256[7]"},{"internalType":"uint256[7]","name":"requiredDeposits","type":"uint256[7]"},{"internalType":"uint256[7]","name":"bonusPercents","type":"uint256[7]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getReferralBonuses","outputs":[{"internalType":"uint256[20]","name":"","type":"uint256[20]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalInvested","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalPaidOut","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalUsers","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserInfo","outputs":[{"internalType":"address","name":"upline","type":"address"},{"internalType":"uint256","name":"totalDeposits","type":"uint256"},{"internalType":"uint256","name":"userTotalWithdrawn","type":"uint256"},{"internalType":"uint256","name":"positionsCount","type":"uint256"},{"internalType":"bool","name":"isPromoter","type":"bool"},{"internalType":"uint256","name":"teamCount","type":"uint256"},{"internalType":"uint256","name":"teamDeposits","type":"uint256"},{"internalType":"string","name":"rank","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserRank","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserReturns","outputs":[{"internalType":"uint256","name":"totalCapitalReturn","type":"uint256"},{"internalType":"uint256","name":"totalRoiBonus","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserRewards","outputs":[{"internalType":"uint256","name":"totalReferralBonus","type":"uint256"},{"internalType":"uint256","name":"totalOnboardingBonus","type":"uint256"},{"internalType":"uint256","name":"leadershipBonus","type":"uint256"},{"internalType":"uint256","name":"availableRewards","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserTotalRewards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"isUserActive","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"planThresholds","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"ranks","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"uint256","name":"requiredTeam","type":"uint256"},{"internalType":"uint256","name":"requiredDeposit","type":"uint256"},{"internalType":"uint256","name":"bonusPercent","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"referralBonuses","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"roiBonusPercentages","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"roiWithdrawIntervals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"promoter","type":"address"},{"internalType":"uint256","name":"depositAmount","type":"uint256"},{"internalType":"uint256","name":"planIndex","type":"uint256"}],"name":"setWalletPromoter","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"totalExpiredReferrals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalInvested","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalInvestors","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalLeadershipPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalOnboardingPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalPositions","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalReferralPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalWithdrawn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"usdtToken","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdrawReferralExpired","outputs":[],"stateMutability":"nonpayable","type":"function"}];
 
 let web3;
 let contract;
@@ -340,40 +340,39 @@ async function loadUserData() {
     if (!contract || !userAccount) return;
     
     try {
-        // Get user basic information
-        const userBasicInfo = await contract.methods.getUserBasicInfo(userAccount).call();
-        const availableReturns = await contract.methods.getUserAvailableReturns(userAccount).call();
-        const bonusInfo = await contract.methods.getUserBonusInfo(userAccount).call();
-        const userTeamInfo = await contract.methods.getUserTeamInfo(userAccount).call();
-        const investmentsCount = await contract.methods.getInvestmentsCount(userAccount).call();
+        // Get user information from new contract functions
+        const userInfo = await contract.methods.getUserInfo(userAccount).call();
+        const userReturns = await contract.methods.getUserReturns(userAccount).call();
+        const userRewards = await contract.methods.getUserRewards(userAccount).call();
         
         const formatUSDT = (weiValue) => {
             return parseFloat(web3.utils.fromWei(weiValue, 'ether')).toFixed(2);
         };
         
         // Update Investment Income
-        document.getElementById('totalDepositDashboard').textContent = `${formatUSDT(userBasicInfo.totalDeposits)} USDT`;
-        document.getElementById('capitalEarning').textContent = `${formatUSDT(availableReturns.totalCapitalReturn)} USDT`;
-        document.getElementById('roiEarning').textContent = `${formatUSDT(availableReturns.totalRoiBonus)} USDT`;
+        document.getElementById('totalDepositDashboard').textContent = `${formatUSDT(userInfo.totalDeposits)} USDT`;
+        document.getElementById('capitalEarning').textContent = `${formatUSDT(userReturns.totalCapitalReturn)} USDT`;
+        document.getElementById('roiEarning').textContent = `${formatUSDT(userReturns.totalRoiBonus)} USDT`;
         
         // Update Network Income
-        document.getElementById('referralEarning').textContent = `${formatUSDT(bonusInfo.totalReferralBonus)} USDT`;
-        document.getElementById('onboardingEarning').textContent = `${formatUSDT(bonusInfo.totalOnboardingBonus)} USDT`;
-        document.getElementById('leadershipEarning').textContent = `${formatUSDT(bonusInfo.availableRewards)} USDT`;
+        document.getElementById('referralEarning').textContent = `${formatUSDT(userRewards.totalReferralBonus)} USDT`;
+        document.getElementById('onboardingEarning').textContent = `${formatUSDT(userRewards.totalOnboardingBonus)} USDT`;
+        document.getElementById('leadershipEarning').textContent = `${formatUSDT(userRewards.leadershipBonus)} USDT`;
         
         // Update referral stats
-        document.getElementById('totalDownlines').textContent = userTeamInfo.teamCount;
+        document.getElementById('totalDownlines').textContent = userInfo.teamCount;
         
         // Update leadership stats
-        document.getElementById('currentRank').textContent = userTeamInfo.rank || 'No Rank';
-        document.getElementById('teamMembers').textContent = userTeamInfo.teamCount;
-        document.getElementById('teamDeposits').textContent = `${formatUSDT(userTeamInfo.teamDeposits)} USDT`;
+        document.getElementById('currentRank').textContent = userInfo.rank || 'No Rank';
+        document.getElementById('teamMembers').textContent = userInfo.teamCount;
+        document.getElementById('teamDeposits').textContent = `${formatUSDT(userInfo.teamDeposits)} USDT`;
         
         // Load positions and update timers
+        const investmentsCount = parseInt(userInfo.positionsCount);
         await loadPositions(investmentsCount);
         
         // Show/hide sections based on data
-        const hasInvestments = parseInt(investmentsCount) > 0;
+        const hasInvestments = investmentsCount > 0;
         
         document.getElementById('noInvestmentsMessage').style.display = hasInvestments ? 'none' : 'block';
         document.getElementById('investmentIncomeSection').style.display = 'block';
@@ -386,7 +385,7 @@ async function loadUserData() {
         generateReferralLink();
         
         // Update qualified levels display
-        await updateQualifiedLevels(userBasicInfo.totalDeposits, userTeamInfo.teamCount);
+        await updateQualifiedLevels(userInfo.totalDeposits, userInfo.teamCount);
         
         // Start timers
         startTimers();
@@ -411,41 +410,29 @@ async function loadPositions(investmentsCount) {
             return parseFloat(web3.utils.fromWei(weiValue, 'ether')).toFixed(2);
         };
         
-        for (let i = 0; i < parseInt(investmentsCount); i++) {
+        for (let i = 0; i < investmentsCount; i++) {
             try {
-                const investmentInfo = await contract.methods.getInvestmentInfo(userAccount, i).call();
-                const investmentReturns = await contract.methods.getInvestmentReturns(userAccount, i).call();
+                const investment = await contract.methods.getInvestmentDetails(userAccount, i).call();
                 
-                const investment = {
+                const inv = {
                     index: i,
-                    amount: investmentInfo.amount,
-                    startTime: investmentInfo.startTime,
-                    endTime: investmentInfo.endTime,
-                    isActive: investmentInfo.isActive,
-                    availableCapital: investmentReturns.availableCapitalReturn,
-                    availableRoi: investmentReturns.availableRoiBonus,
-                    planIndex: investmentInfo.planIndex,
-                    lastRoiTime: investmentInfo.lastRoiWithdrawTime,
-                    capitalClaimed: investmentInfo.capitalReturnClaimed,
-                    roiClaimed: investmentInfo.roiBonusClaimed
+                    amount: investment.amount,
+                    startTime: investment.startTime,
+                    endTime: investment.endTime,
+                    isActive: investment.isActive,
+                    availableCapital: investment.availableCapital,
+                    availableRoi: investment.availableRoi,
+                    planIndex: investment.planIndex,
+                    nextRoiTime: investment.nextWithdrawTime
                 };
                 
-                userInvestments.push(investment);
+                userInvestments.push(inv);
                 
-                // Determine plan details based on amount
-                const amountInUSDT = parseFloat(web3.utils.fromWei(investment.amount, 'ether'));
+                // Determine plan name based on planIndex
                 let planName = 'Unknown';
-                
-                if (amountInUSDT >= 5000) {
-                    planName = 'Premium';
-                } else if (amountInUSDT >= 2500) {
-                    planName = 'High';
-                } else if (amountInUSDT >= 1000) {
-                    planName = 'Standard';
-                } else if (amountInUSDT >= 500) {
-                    planName = 'Basic';
-                } else {
-                    planName = 'Beginner';
+                const planNames = ['Beginner', 'Basic', 'Standard', 'High', 'Premium'];
+                if (investment.planIndex < planNames.length) {
+                    planName = planNames[investment.planIndex];
                 }
                 
                 // Create position row
@@ -651,17 +638,8 @@ function startTimers() {
     let nextCapitalTime = null;
     
     userInvestments.forEach(inv => {
-        if (inv.isActive && inv.lastRoiTime) {
-            // Calculate next ROI withdrawal time based on plan
-            const amountInUSDT = parseFloat(web3.utils.fromWei(inv.amount, 'ether'));
-            let intervalHours = 24; // Default
-            
-            if (amountInUSDT >= 5000) intervalHours = 2;
-            else if (amountInUSDT >= 2500) intervalHours = 4;
-            else if (amountInUSDT >= 1000) intervalHours = 8;
-            else if (amountInUSDT >= 500) intervalHours = 12;
-            
-            const nextROI = parseInt(inv.lastRoiTime) + (intervalHours * 3600);
+        if (inv.isActive && inv.nextRoiTime) {
+            const nextROI = parseInt(inv.nextRoiTime);
             const currentTime = Math.floor(Date.now() / 1000);
             
             if (nextROI > currentTime) {
@@ -761,17 +739,8 @@ async function claimAllROI() {
             const inv = userInvestments[i];
             if (inv.isActive && parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether')) > 0) {
                 const currentTime = Math.floor(Date.now() / 1000);
-                const amountInUSDT = parseFloat(web3.utils.fromWei(inv.amount, 'ether'));
-                let intervalHours = 24;
                 
-                if (amountInUSDT >= 5000) intervalHours = 2;
-                else if (amountInUSDT >= 2500) intervalHours = 4;
-                else if (amountInUSDT >= 1000) intervalHours = 8;
-                else if (amountInUSDT >= 500) intervalHours = 12;
-                
-                const nextROI = parseInt(inv.lastRoiTime) + (intervalHours * 3600);
-                
-                if (nextROI <= currentTime) {
+                if (parseInt(inv.nextRoiTime) <= currentTime) {
                     positionsToClaim.push(i);
                 }
             }
@@ -936,10 +905,8 @@ async function compoundNetworkEarnings() {
     
     try {
         // Get available rewards
-        const bonusInfo = await contract.methods.getUserBonusInfo(userAccount).call();
-        const totalRewards = new BigNumber(bonusInfo.totalReferralBonus)
-            .plus(new BigNumber(bonusInfo.totalOnboardingBonus))
-            .plus(new BigNumber(bonusInfo.availableRewards));
+        const userRewards = await contract.methods.getUserRewards(userAccount).call();
+        const totalRewards = new BigNumber(userRewards.availableRewards);
         
         if (parseFloat(web3.utils.fromWei(totalRewards.toString(), 'ether')) < 1) {
             showNotification('Minimum 1 USDT required for compounding', 'error');
@@ -979,18 +946,17 @@ async function loadTeamData() {
             const downlineAddress = downlines[i];
             
             try {
-                // Get basic info for downline
-                const basicInfo = await contract.methods.getUserBasicInfo(downlineAddress).call();
-                const teamInfo = await contract.methods.getUserTeamInfo(downlineAddress).call();
-                const statusInfo = await contract.methods.getUserStatusInfo(downlineAddress).call();
+                // Get user info for downline
+                const userInfo = await contract.methods.getUserInfo(downlineAddress).call();
+                const isActive = await contract.methods.isUserActive(downlineAddress).call();
                 
                 const teamMember = {
                     address: downlineAddress,
                     level: i + 1, // Level is index + 1
-                    totalDeposit: basicInfo.totalDeposits,
-                    activeDeposit: statusInfo.hasDeposited ? basicInfo.totalDeposits : '0',
-                    teamCount: teamInfo.teamCount,
-                    teamDeposits: teamInfo.teamDeposits
+                    totalDeposit: userInfo.totalDeposits,
+                    activeDeposit: isActive ? userInfo.totalDeposits : '0',
+                    teamCount: userInfo.teamCount,
+                    teamDeposits: userInfo.teamDeposits
                 };
                 
                 userTeamData.push(teamMember);
