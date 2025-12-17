@@ -131,31 +131,31 @@
                 <!-- Investment Income Section -->
                 <div class="dashboard-section" id="investmentIncomeSection" style="display: none;">
                     <h3 class="dashboard-subtitle">Investment Income</h3>
-                    <div class="income-stats">
+                    <div class="income-stats mobile-income-stats">
                         <div class="stat-card mobile-stat-card">
-                            <div class="stat-icon"><i class="fas fa-wallet"></i></div>
-                            <div class="stat-info">
-                                <div class="stat-value" id="totalDepositDashboard">0 USDT</div>
-                                <div class="stat-label">Total Deposit</div>
+                            <div class="stat-icon mobile-stat-icon"><i class="fas fa-wallet"></i></div>
+                            <div class="stat-info mobile-stat-info">
+                                <div class="stat-value mobile-stat-value" id="totalDepositDashboard">0 USDT</div>
+                                <div class="stat-label mobile-stat-label">Total Deposit</div>
                             </div>
                         </div>
                         <div class="stat-card mobile-stat-card">
-                            <div class="stat-icon"><i class="fas fa-coins"></i></div>
-                            <div class="stat-info">
-                                <div class="stat-value" id="capitalEarning">0 USDT</div>
-                                <div class="stat-label">Capital Earning</div>
+                            <div class="stat-icon mobile-stat-icon"><i class="fas fa-coins"></i></div>
+                            <div class="stat-info mobile-stat-info">
+                                <div class="stat-value mobile-stat-value" id="capitalEarning">0 USDT</div>
+                                <div class="stat-label mobile-stat-label">Capital Earning</div>
                             </div>
                         </div>
                         <div class="stat-card mobile-stat-card">
-                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="stat-info">
-                                <div class="stat-value" id="roiEarning">0 USDT</div>
-                                <div class="stat-label">ROI Earning</div>
+                            <div class="stat-icon mobile-stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-info mobile-stat-info">
+                                <div class="stat-value mobile-stat-value" id="roiEarning">0 USDT</div>
+                                <div class="stat-label mobile-stat-label">ROI Earning</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="action-buttons" style="margin-bottom: 40px;">
+                    <div class="action-buttons mobile-action-buttons" style="margin-bottom: 40px;">
                         <button class="btn btn--primary mobile-btn" id="claimROI">
                             <i class="fas fa-download"></i> Claim ROI
                             <span class="timer-badge" id="roiTimer" style="display: none;">00:00:00</span>
@@ -173,31 +173,31 @@
                 <!-- Network Income Section -->
                 <div class="dashboard-section" id="networkIncomeSection" style="display: none;">
                     <h3 class="dashboard-subtitle">Network Income</h3>
-                    <div class="income-stats">
+                    <div class="income-stats mobile-income-stats">
                         <div class="stat-card mobile-stat-card">
-                            <div class="stat-icon"><i class="fas fa-gift"></i></div>
-                            <div class="stat-info">
-                                <div class="stat-value" id="referralEarning">0 USDT</div>
-                                <div class="stat-label">Referral Earning</div>
+                            <div class="stat-icon mobile-stat-icon"><i class="fas fa-gift"></i></div>
+                            <div class="stat-info mobile-stat-info">
+                                <div class="stat-value mobile-stat-value" id="referralEarning">0 USDT</div>
+                                <div class="stat-label mobile-stat-label">Referral Earning</div>
                             </div>
                         </div>
                         <div class="stat-card mobile-stat-card">
-                            <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
-                            <div class="stat-info">
-                                <div class="stat-value" id="onboardingEarning">0 USDT</div>
-                                <div class="stat-label">Onboarding Earning</div>
+                            <div class="stat-icon mobile-stat-icon"><i class="fas fa-user-plus"></i></div>
+                            <div class="stat-info mobile-stat-info">
+                                <div class="stat-value mobile-stat-value" id="onboardingEarning">0 USDT</div>
+                                <div class="stat-label mobile-stat-label">Onboarding Earning</div>
                             </div>
                         </div>
                         <div class="stat-card mobile-stat-card">
-                            <div class="stat-icon"><i class="fas fa-crown"></i></div>
-                            <div class="stat-info">
-                                <div class="stat-value" id="leadershipEarning">0 USDT</div>
-                                <div class="stat-label">Leadership Earning</div>
+                            <div class="stat-icon mobile-stat-icon"><i class="fas fa-crown"></i></div>
+                            <div class="stat-info mobile-stat-info">
+                                <div class="stat-value mobile-stat-value" id="leadershipEarning">0 USDT</div>
+                                <div class="stat-label mobile-stat-label">Leadership Earning</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="action-buttons" style="margin-bottom: 40px;">
+                    <div class="action-buttons mobile-action-buttons" style="margin-bottom: 40px;">
                         <button class="btn btn--primary mobile-btn" id="claimNetwork">
                             <i class="fas fa-download"></i> Claim Network
                         </button>
@@ -210,27 +210,29 @@
                 <!-- My Positions Section -->
                 <div class="my-positions-section" id="myPositionsSection" style="display: none;">
                     <div class="section__header">
-                        <h3 class="section__title" style="font-size: 1.8rem;">My Positions</h3>
-                        <p class="section__subtitle">History of your deposits and compounds</p>
+                        <h3 class="section__title mobile-section-title">My Positions</h3>
+                        <p class="section__subtitle mobile-section-subtitle">History of your deposits and compounds</p>
                     </div>
 
-                    <div class="positions-table-container">
-                        <table class="positions-table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Type</th>
-                                    <th>Amount</th>
-                                    <th>Plan</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="positionsTableBody">
-                                <!-- Positions will be generated by JavaScript -->
-                            </tbody>
-                        </table>
+                    <div class="positions-table-container mobile-table-container">
+                        <div class="table-responsive">
+                            <table class="positions-table mobile-positions-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Plan</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="positionsTableBody">
+                                    <!-- Positions will be generated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -262,14 +264,14 @@
                     <!-- Beginner Plan -->
                     <div class="plan-card">
                         <div class="plan-badge">Beginner</div>
-                        <div class="plan-roi">4% Capital + 0.5% ROI</div>
+                        <div class="plan-roi-mobile">4% Capital + 0.5% ROI</div>
                         <div class="plan-range">10 - 499 USDT</div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Capital Earning: 4% daily</li>
-                            <li><i class="fas fa-check"></i> ROI Earning: 0.5% daily</li>
-                            <li><i class="fas fa-check"></i> Withdraw Interval: Every 24h</li>
+                            <li><i class="fas fa-check"></i> Capital: 4% daily</li>
+                            <li><i class="fas fa-check"></i> ROI: 0.5% daily</li>
+                            <li><i class="fas fa-check"></i> Withdraw: Every 24h</li>
                             <li><i class="fas fa-check"></i> Cycle: 25 days</li>
-                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions</li>
                         </ul>
                         <button class="btn btn--outline select-plan" data-plan="beginner">
                             Select Plan
@@ -279,14 +281,14 @@
                     <!-- Basic Plan -->
                     <div class="plan-card">
                         <div class="plan-badge">Basic</div>
-                        <div class="plan-roi">4% Capital + 0.75% ROI</div>
+                        <div class="plan-roi-mobile">4% Capital + 0.75% ROI</div>
                         <div class="plan-range">500 - 999 USDT</div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Capital Earning: 4% daily</li>
-                            <li><i class="fas fa-check"></i> ROI Earning: 0.75% daily</li>
-                            <li><i class="fas fa-check"></i> Withdraw Interval: Every 12h</li>
+                            <li><i class="fas fa-check"></i> Capital: 4% daily</li>
+                            <li><i class="fas fa-check"></i> ROI: 0.75% daily</li>
+                            <li><i class="fas fa-check"></i> Withdraw: Every 12h</li>
                             <li><i class="fas fa-check"></i> Cycle: 25 days</li>
-                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions</li>
                         </ul>
                         <button class="btn btn--outline select-plan" data-plan="basic">
                             Select Plan
@@ -296,14 +298,14 @@
                     <!-- Standard Plan -->
                     <div class="plan-card featured">
                         <div class="plan-badge">Standard</div>
-                        <div class="plan-roi">4% Capital + 1% ROI</div>
+                        <div class="plan-roi-mobile">4% Capital + 1% ROI</div>
                         <div class="plan-range">1,000 - 2,499 USDT</div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Capital Earning: 4% daily</li>
-                            <li><i class="fas fa-check"></i> ROI Earning: 1% daily</li>
-                            <li><i class="fas fa-check"></i> Withdraw Interval: Every 8h</li>
+                            <li><i class="fas fa-check"></i> Capital: 4% daily</li>
+                            <li><i class="fas fa-check"></i> ROI: 1% daily</li>
+                            <li><i class="fas fa-check"></i> Withdraw: Every 8h</li>
                             <li><i class="fas fa-check"></i> Cycle: 25 days</li>
-                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions</li>
                         </ul>
                         <button class="btn btn--primary select-plan" data-plan="standard">
                             Select Plan
@@ -313,14 +315,14 @@
                     <!-- High Plan -->
                     <div class="plan-card">
                         <div class="plan-badge">High</div>
-                        <div class="plan-roi">4% Capital + 1.25% ROI</div>
+                        <div class="plan-roi-mobile">4% Capital + 1.25% ROI</div>
                         <div class="plan-range">2,500 - 4,999 USDT</div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Capital Earning: 4% daily</li>
-                            <li><i class="fas fa-check"></i> ROI Earning: 1.25% daily</li>
-                            <li><i class="fas fa-check"></i> Withdraw Interval: Every 4h</li>
+                            <li><i class="fas fa-check"></i> Capital: 4% daily</li>
+                            <li><i class="fas fa-check"></i> ROI: 1.25% daily</li>
+                            <li><i class="fas fa-check"></i> Withdraw: Every 4h</li>
                             <li><i class="fas fa-check"></i> Cycle: 25 days</li>
-                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions</li>
                         </ul>
                         <button class="btn btn--outline select-plan" data-plan="high">
                             Select Plan
@@ -330,14 +332,14 @@
                     <!-- Premium Plan -->
                     <div class="plan-card">
                         <div class="plan-badge">Premium</div>
-                        <div class="plan-roi">4% Capital + 1.5% ROI</div>
+                        <div class="plan-roi-mobile">4% Capital + 1.5% ROI</div>
                         <div class="plan-range">5,000+ USDT</div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Capital Earning: 4% daily</li>
-                            <li><i class="fas fa-check"></i> ROI Earning: 1.5% daily</li>
-                            <li><i class="fas fa-check"></i> Withdraw Interval: Every 2h</li>
+                            <li><i class="fas fa-check"></i> Capital: 4% daily</li>
+                            <li><i class="fas fa-check"></i> ROI: 1.5% daily</li>
+                            <li><i class="fas fa-check"></i> Withdraw: Every 2h</li>
                             <li><i class="fas fa-check"></i> Cycle: 25 days</li>
-                            <li><i class="fas fa-check"></i> Max 100 positions per user</li>
+                            <li><i class="fas fa-check"></i> Max 100 positions</li>
                         </ul>
                         <button class="btn btn--outline select-plan" data-plan="premium">
                             Select Plan
@@ -349,7 +351,7 @@
                 <div class="investment-form-container" id="investmentForm" style="display: none;">
                     <div class="card__header">
                         <h2 id="selectedPlanTitle">Complete Your Deposit</h2>
-                        <button class="btn btn--outline btn-sm mobile-btn" id="backToPlans">
+                        <button class="btn btn--outline btn-sm mobile-btn-sm" id="backToPlans">
                             <i class="fas fa-arrow-left"></i> Back to Plans
                         </button>
                     </div>
@@ -389,7 +391,7 @@
                         <div class="success-icon"><i class="fas fa-check"></i></div>
                         <h2 style="margin-bottom: 10px;">Deposit Successful!</h2>
                         <p style="color: var(--text-muted); margin-bottom: 30px;">Your investment is now active and earning returns</p>
-                        <div class="success-actions" style="display: flex; gap: 10px; justify-content: center;">
+                        <div class="success-actions" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                             <button class="btn btn--primary mobile-btn" data-section="dashboard">Go to Dashboard</button>
                             <button class="btn btn--outline mobile-btn" id="newInvestment">New Deposit</button>
                         </div>
@@ -413,17 +415,17 @@
 
                 <div class="referral-stats" id="referralStats" style="display: none;">
                     <div class="stat-card mobile-stat-card">
-                        <div class="stat-icon"><i class="fas fa-users"></i></div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="totalDownlines">0</div>
-                            <div class="stat-label">Total Downlines</div>
+                        <div class="stat-icon mobile-stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info mobile-stat-info">
+                            <div class="stat-value mobile-stat-value" id="totalDownlines">0</div>
+                            <div class="stat-label mobile-stat-label">Total Downlines</div>
                         </div>
                     </div>
                     <div class="stat-card mobile-stat-card">
-                        <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="qualifiedLevels">0</div>
-                            <div class="stat-label">Qualified Levels</div>
+                        <div class="stat-icon mobile-stat-icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="stat-info mobile-stat-info">
+                            <div class="stat-value mobile-stat-value" id="qualifiedLevels">0</div>
+                            <div class="stat-label mobile-stat-label">Qualified Levels</div>
                         </div>
                     </div>
                 </div>
@@ -462,24 +464,24 @@
 
                 <div class="leadership-stats" id="leadershipStats" style="display: none;">
                     <div class="stat-card mobile-stat-card">
-                        <div class="stat-icon"><i class="fas fa-medal"></i></div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="currentRank">-</div>
-                            <div class="stat-label">Current Rank</div>
+                        <div class="stat-icon mobile-stat-icon"><i class="fas fa-medal"></i></div>
+                        <div class="stat-info mobile-stat-info">
+                            <div class="stat-value mobile-stat-value" id="currentRank">-</div>
+                            <div class="stat-label mobile-stat-label">Current Rank</div>
                         </div>
                     </div>
                     <div class="stat-card mobile-stat-card">
-                        <div class="stat-icon"><i class="fas fa-users"></i></div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="teamMembers">0</div>
-                            <div class="stat-label">Team Members</div>
+                        <div class="stat-icon mobile-stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info mobile-stat-info">
+                            <div class="stat-value mobile-stat-value" id="teamMembers">0</div>
+                            <div class="stat-label mobile-stat-label">Team Members</div>
                         </div>
                     </div>
                     <div class="stat-card mobile-stat-card">
-                        <div class="stat-icon"><i class="fas fa-coins"></i></div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="teamDeposits">0 USDT</div>
-                            <div class="stat-label">Team Deposits</div>
+                        <div class="stat-icon mobile-stat-icon"><i class="fas fa-coins"></i></div>
+                        <div class="stat-info mobile-stat-info">
+                            <div class="stat-value mobile-stat-value" id="teamDeposits">0 USDT</div>
+                            <div class="stat-label mobile-stat-label">Team Deposits</div>
                         </div>
                     </div>
                 </div>
@@ -503,7 +505,7 @@
                     <span>Please connect your wallet to view team data</span>
                 </div>
 
-                <div class="team-table-container" id="teamTableContainer" style="display: none;">
+                <div class="team-table-container mobile-table-container" id="teamTableContainer" style="display: none;">
                     <div class="team-filters" style="margin-bottom: 20px;">
                         <select id="levelFilter" class="form-input mobile-select" style="width: 100%; max-width: 200px;">
                             <option value="">All Levels</option>
@@ -530,11 +532,11 @@
                         </select>
                     </div>
                     <div class="table-responsive">
-                        <table class="team-table">
+                        <table class="team-table mobile-team-table">
                             <thead>
                                 <tr>
                                     <th>Address</th>
-                                    <th>Level</th>
+                                    <th>Lvl</th>
                                     <th>Deposit</th>
                                     <th>Active</th>
                                     <th>Team</th>
