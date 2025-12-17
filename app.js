@@ -390,9 +390,81 @@ async function loadUserData() {
         // Start timers
         startTimers();
         
+        // Update button states based on available earnings
+        updateButtonStates(userReturns, userRewards);
+        
     } catch (error) {
         console.error('Error loading user data:', error);
         showNotification('Error loading user data', 'error');
+    }
+}
+
+// Fungsi untuk update state button berdasarkan jumlah earning
+function updateButtonStates(userReturns, userRewards) {
+    const formatUSDT = (weiValue) => {
+        return parseFloat(web3.utils.fromWei(weiValue, 'ether'));
+    };
+    
+    const totalROI = formatUSDT(userReturns.totalRoiBonus);
+    const totalCapital = formatUSDT(userReturns.totalCapitalReturn);
+    const totalNetwork = formatUSDT(userRewards.availableRewards);
+    
+    // Update ROI button
+    const roiBtn = document.getElementById('claimROI');
+    if (totalROI < 1) {
+        roiBtn.disabled = true;
+        roiBtn.title = "Minimum 1 USDT required to claim";
+        roiBtn.style.opacity = "0.6";
+    } else {
+        roiBtn.disabled = false;
+        roiBtn.title = "";
+        roiBtn.style.opacity = "1";
+    }
+    
+    // Update Capital button
+    const capitalBtn = document.getElementById('claimCapital');
+    if (totalCapital < 1) {
+        capitalBtn.disabled = true;
+        capitalBtn.title = "Minimum 1 USDT required to claim";
+        capitalBtn.style.opacity = "0.6";
+    } else {
+        capitalBtn.disabled = false;
+        capitalBtn.title = "";
+        capitalBtn.style.opacity = "1";
+    }
+    
+    // Update Compound ROI button
+    const compoundROIBtn = document.getElementById('compoundInvestment');
+    if (totalROI < 1) {
+        compoundROIBtn.disabled = true;
+        compoundROIBtn.title = "Minimum 1 USDT required to compound";
+        compoundROIBtn.style.opacity = "0.6";
+    } else {
+        compoundROIBtn.disabled = false;
+        compoundROIBtn.title = "";
+        compoundROIBtn.style.opacity = "1";
+    }
+    
+    // Update Network buttons
+    const claimNetworkBtn = document.getElementById('claimNetwork');
+    const compoundNetworkBtn = document.getElementById('compoundNetwork');
+    
+    if (totalNetwork < 1) {
+        claimNetworkBtn.disabled = true;
+        claimNetworkBtn.title = "Minimum 1 USDT required to claim";
+        claimNetworkBtn.style.opacity = "0.6";
+        
+        compoundNetworkBtn.disabled = true;
+        compoundNetworkBtn.title = "Minimum 1 USDT required to compound";
+        compoundNetworkBtn.style.opacity = "0.6";
+    } else {
+        claimNetworkBtn.disabled = false;
+        claimNetworkBtn.title = "";
+        claimNetworkBtn.style.opacity = "1";
+        
+        compoundNetworkBtn.disabled = false;
+        compoundNetworkBtn.title = "";
+        compoundNetworkBtn.style.opacity = "1";
     }
 }
 
@@ -435,6 +507,12 @@ async function loadPositions(investmentsCount) {
                     planName = planNames[investment.planIndex];
                 }
                 
+                // Format dates for mobile
+                const startDate = new Date(parseInt(investment.startTime) * 1000);
+                const endDate = new Date(parseInt(investment.endTime) * 1000);
+                const startDateStr = `${startDate.getDate()}/${startDate.getMonth()+1}`;
+                const endDateStr = `${endDate.getDate()}/${endDate.getMonth()+1}`;
+                
                 // Create position row
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -442,8 +520,8 @@ async function loadPositions(investmentsCount) {
                     <td>${investment.isActive ? 'Deposit' : 'Completed'}</td>
                     <td>${formatUSDT(investment.amount)} USDT</td>
                     <td>${planName}</td>
-                    <td>${new Date(parseInt(investment.startTime) * 1000).toLocaleDateString()}</td>
-                    <td>${new Date(parseInt(investment.endTime) * 1000).toLocaleDateString()}</td>
+                    <td>${startDateStr}</td>
+                    <td>${endDateStr}</td>
                     <td><span class="status-badge ${investment.isActive ? 'status-active' : 'status-completed'}">
                         <i class="fas ${investment.isActive ? 'fa-circle-notch fa-spin' : 'fa-check-circle'}"></i>
                         ${investment.isActive ? 'Active' : 'Completed'}
@@ -665,7 +743,6 @@ function startTimers() {
         }, 1000);
     } else {
         document.getElementById('roiTimer').style.display = 'none';
-        document.getElementById('claimROI').disabled = false;
     }
     
     // Start Capital timer
@@ -676,7 +753,6 @@ function startTimers() {
         }, 1000);
     } else {
         document.getElementById('capitalTimer').style.display = 'none';
-        document.getElementById('claimCapital').disabled = false;
     }
 }
 
@@ -694,9 +770,11 @@ function updateROITimer(endTime) {
         timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         timerElement.style.display = 'inline';
         claimBtn.disabled = true;
+        claimBtn.title = "Wait for timer to finish";
+        claimBtn.style.opacity = "0.6";
     } else {
         timerElement.style.display = 'none';
-        claimBtn.disabled = false;
+        // Button enabled/disabled state will be updated by updateButtonStates()
     }
 }
 
@@ -715,9 +793,11 @@ function updateCapitalTimer(endTime) {
         timerElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         timerElement.style.display = 'inline';
         claimBtn.disabled = true;
+        claimBtn.title = "Wait 25 days to claim capital";
+        claimBtn.style.opacity = "0.6";
     } else {
         timerElement.style.display = 'none';
-        claimBtn.disabled = false;
+        // Button enabled/disabled state will be updated by updateButtonStates()
     }
 }
 
@@ -734,6 +814,7 @@ async function claimAllROI() {
     try {
         // Get available ROI for all positions
         let positionsToClaim = [];
+        let totalROI = 0;
         
         for (let i = 0; i < userInvestments.length; i++) {
             const inv = userInvestments[i];
@@ -742,12 +823,21 @@ async function claimAllROI() {
                 
                 if (parseInt(inv.nextRoiTime) <= currentTime) {
                     positionsToClaim.push(i);
+                    totalROI += parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether'));
                 }
             }
         }
         
         if (positionsToClaim.length === 0) {
             showNotification('No ROI available to claim yet', 'info');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            return;
+        }
+        
+        // Check minimum amount
+        if (totalROI < 1) {
+            showNotification('Minimum 1 USDT required to claim ROI', 'error');
             btn.innerHTML = originalText;
             btn.disabled = false;
             return;
@@ -785,6 +875,7 @@ async function claimAllCapital() {
     try {
         // Find positions with available capital
         const positionsToClaim = [];
+        let totalCapital = 0;
         
         for (let i = 0; i < userInvestments.length; i++) {
             const inv = userInvestments[i];
@@ -793,11 +884,20 @@ async function claimAllCapital() {
             if ((!inv.isActive || parseInt(inv.endTime) <= currentTime) && 
                 parseFloat(web3.utils.fromWei(inv.availableCapital, 'ether')) > 0) {
                 positionsToClaim.push(i);
+                totalCapital += parseFloat(web3.utils.fromWei(inv.availableCapital, 'ether'));
             }
         }
         
         if (positionsToClaim.length === 0) {
             showNotification('No capital available to claim yet', 'info');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            return;
+        }
+        
+        // Check minimum amount
+        if (totalCapital < 1) {
+            showNotification('Minimum 1 USDT required to claim capital', 'error');
             btn.innerHTML = originalText;
             btn.disabled = false;
             return;
@@ -879,6 +979,17 @@ async function claimNetworkEarnings() {
     btn.disabled = true;
     
     try {
+        // Get available rewards
+        const userRewards = await contract.methods.getUserRewards(userAccount).call();
+        const totalRewards = parseFloat(web3.utils.fromWei(userRewards.availableRewards, 'ether'));
+        
+        if (totalRewards < 1) {
+            showNotification('Minimum 1 USDT required to claim network earnings', 'error');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            return;
+        }
+        
         showNotification('Claiming network earnings...', 'info');
         await contract.methods.claimRewards().send({ from: userAccount });
         showNotification('Network earnings claimed successfully!', 'success');
@@ -906,9 +1017,9 @@ async function compoundNetworkEarnings() {
     try {
         // Get available rewards
         const userRewards = await contract.methods.getUserRewards(userAccount).call();
-        const totalRewards = new BigNumber(userRewards.availableRewards);
+        const totalRewards = parseFloat(web3.utils.fromWei(userRewards.availableRewards, 'ether'));
         
-        if (parseFloat(web3.utils.fromWei(totalRewards.toString(), 'ether')) < 1) {
+        if (totalRewards < 1) {
             showNotification('Minimum 1 USDT required for compounding', 'error');
             btn.innerHTML = originalText;
             btn.disabled = false;
@@ -916,7 +1027,7 @@ async function compoundNetworkEarnings() {
         }
         
         showNotification('Compounding network earnings...', 'info');
-        await contract.methods.compoundRewards(totalRewards.toString()).send({ from: userAccount });
+        await contract.methods.compoundRewards(userRewards.availableRewards).send({ from: userAccount });
         showNotification('Network earnings compounded successfully!', 'success');
         await loadUserData();
         
@@ -989,9 +1100,9 @@ function displayTeamData() {
     if (userTeamData.length === 0) {
         teamTableBody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; padding: 40px;">
-                    <div style="color: var(--text-muted);">
-                        <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <td colspan="6" style="text-align: center; padding: 20px;">
+                    <div style="color: var(--text-muted); font-size: 0.9rem;">
+                        <i class="fas fa-users" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
                         <p>No team members found</p>
                     </div>
                 </td>
@@ -1008,9 +1119,9 @@ function displayTeamData() {
     if (filteredData.length === 0) {
         teamTableBody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; padding: 40px;">
-                    <div style="color: var(--text-muted);">
-                        <i class="fas fa-filter" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <td colspan="6" style="text-align: center; padding: 20px;">
+                    <div style="color: var(--text-muted); font-size: 0.9rem;">
+                        <i class="fas fa-filter" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
                         <p>No team members found for selected level</p>
                     </div>
                 </td>
@@ -1025,10 +1136,10 @@ function displayTeamData() {
         row.innerHTML = `
             <td><span class="wallet-address">${member.address.substring(0, 6)}...${member.address.substring(member.address.length - 4)}</span></td>
             <td>${member.level}</td>
-            <td>${formatUSDT(member.totalDeposit)} USDT</td>
-            <td>${formatUSDT(member.activeDeposit)} USDT</td>
+            <td>${formatUSDT(member.totalDeposit)}</td>
+            <td>${formatUSDT(member.activeDeposit)}</td>
             <td>${member.teamCount}</td>
-            <td>${formatUSDT(member.teamDeposits)} USDT</td>
+            <td>${formatUSDT(member.teamDeposits)}</td>
         `;
         teamTableBody.appendChild(row);
     });
@@ -1110,10 +1221,10 @@ function generateLeadershipLevelsCompact() {
     levelsContainer.innerHTML = ranks.map(rank => `
         <div class="leadership-level-compact">
             <div class="level-number-compact">${rank.level}</div>
-            <div style="font-weight:600; color:white;">${rank.title}</div>
+            <div style="font-weight:600; color:white; font-size: 0.85rem;">${rank.title}</div>
             <div class="level-commission-compact">${rank.bonus}</div>
             <div class="level-requirement-compact">${rank.team} members</div>
-            <div class="level-requirement-compact" style="font-size:0.7rem;">${rank.deposit} USDT team</div>
+            <div class="level-requirement-compact" style="font-size:0.65rem;">${rank.deposit} USDT team</div>
         </div>
     `).join('');
 }
