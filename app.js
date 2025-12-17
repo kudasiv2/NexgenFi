@@ -1,3 +1,4 @@
+// Updated contract address and ABI for new contract
 const CONTRACT_ADDRESS = '0x3eCCC758B9a82D2eB543Dc13433B9beaA46baBF9';
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
 const READ_ONLY_RPC = 'https://bsc-dataseed1.binance.org/';
@@ -324,6 +325,8 @@ function showWalletAlerts() {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
+    
+    document.getElementById('timerSection').style.display = 'none';
 }
 
 function hideWalletAlerts() {
@@ -656,6 +659,13 @@ function startTimers() {
         }
     });
     
+    // Show timer section if there are active timers
+    if (nextROITime || nextCapitalTime) {
+        document.getElementById('timerSection').style.display = 'block';
+    } else {
+        document.getElementById('timerSection').style.display = 'none';
+    }
+    
     // Start ROI timer
     if (nextROITime) {
         updateROITimer(nextROITime);
@@ -663,7 +673,7 @@ function startTimers() {
             updateROITimer(nextROITime);
         }, 1000);
     } else {
-        document.getElementById('roiTimerDisplay').style.display = 'none';
+        document.getElementById('roiTimerDisplay').textContent = 'Ready to Claim';
         document.getElementById('claimROI').disabled = false;
     }
     
@@ -674,14 +684,13 @@ function startTimers() {
             updateCapitalTimer(nextCapitalTime);
         }, 1000);
     } else {
-        document.getElementById('capitalTimerDisplay').style.display = 'none';
+        document.getElementById('capitalTimerDisplay').textContent = 'Ready to Claim';
         document.getElementById('claimCapital').disabled = false;
     }
 }
 
 function updateROITimer(endTime) {
     const timerElement = document.getElementById('roiTimerDisplay');
-    const timerText = document.getElementById('roiTimerText');
     const claimBtn = document.getElementById('claimROI');
     const currentTime = Math.floor(Date.now() / 1000);
     const timeLeft = endTime - currentTime;
@@ -691,18 +700,16 @@ function updateROITimer(endTime) {
         const minutes = Math.floor((timeLeft % 3600) / 60);
         const seconds = timeLeft % 60;
         
-        timerText.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        timerElement.style.display = 'flex';
+        timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         claimBtn.disabled = true;
     } else {
-        timerElement.style.display = 'none';
+        timerElement.textContent = 'Ready to Claim';
         claimBtn.disabled = false;
     }
 }
 
 function updateCapitalTimer(endTime) {
     const timerElement = document.getElementById('capitalTimerDisplay');
-    const timerText = document.getElementById('capitalTimerText');
     const claimBtn = document.getElementById('claimCapital');
     const currentTime = Math.floor(Date.now() / 1000);
     const timeLeft = endTime - currentTime;
@@ -713,11 +720,10 @@ function updateCapitalTimer(endTime) {
         const minutes = Math.floor((timeLeft % 3600) / 60);
         const seconds = timeLeft % 60;
         
-        timerText.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        timerElement.style.display = 'flex';
+        timerElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         claimBtn.disabled = true;
     } else {
-        timerElement.style.display = 'none';
+        timerElement.textContent = 'Ready to Claim';
         claimBtn.disabled = false;
     }
 }
@@ -725,6 +731,22 @@ function updateCapitalTimer(endTime) {
 async function claimAllROI() {
     if (!contract || !userAccount) {
         return showNotification('Please connect wallet first', 'error');
+    }
+    
+    // Check minimum amount
+    let totalAvailableROI = 0;
+    for (let i = 0; i < userInvestments.length; i++) {
+        const inv = userInvestments[i];
+        if (inv.isActive && parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether')) > 0) {
+            const currentTime = Math.floor(Date.now() / 1000);
+            if (parseInt(inv.nextRoiTime) <= currentTime) {
+                totalAvailableROI += parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether'));
+            }
+        }
+    }
+    
+    if (totalAvailableROI < 1) {
+        return showNotification('Minimum 1 USDT required to claim ROI', 'error');
     }
     
     const btn = document.getElementById('claimROI');
@@ -735,7 +757,6 @@ async function claimAllROI() {
     try {
         // Get available ROI for all positions
         let positionsToClaim = [];
-        let totalAvailableROI = new BigNumber(0);
         
         for (let i = 0; i < userInvestments.length; i++) {
             const inv = userInvestments[i];
@@ -744,22 +765,12 @@ async function claimAllROI() {
                 
                 if (parseInt(inv.nextRoiTime) <= currentTime) {
                     positionsToClaim.push(i);
-                    totalAvailableROI = totalAvailableROI.plus(new BigNumber(inv.availableRoi));
                 }
             }
         }
         
         if (positionsToClaim.length === 0) {
             showNotification('No ROI available to claim yet', 'info');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
-        // Check minimum withdrawal amount
-        const minAmount = web3.utils.toWei('1', 'ether');
-        if (totalAvailableROI.isLessThan(new BigNumber(minAmount))) {
-            showNotification('Minimum 1 USDT ROI required to claim', 'error');
             btn.innerHTML = originalText;
             btn.disabled = false;
             return;
@@ -789,6 +800,22 @@ async function claimAllCapital() {
         return showNotification('Please connect wallet first', 'error');
     }
     
+    // Check minimum amount
+    let totalAvailableCapital = 0;
+    for (let i = 0; i < userInvestments.length; i++) {
+        const inv = userInvestments[i];
+        const currentTime = Math.floor(Date.now() / 1000);
+        
+        if ((!inv.isActive || parseInt(inv.endTime) <= currentTime) && 
+            parseFloat(web3.utils.fromWei(inv.availableCapital, 'ether')) > 0) {
+            totalAvailableCapital += parseFloat(web3.utils.fromWei(inv.availableCapital, 'ether'));
+        }
+    }
+    
+    if (totalAvailableCapital < 1) {
+        return showNotification('Minimum 1 USDT required to claim capital', 'error');
+    }
+    
     const btn = document.getElementById('claimCapital');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
@@ -797,7 +824,6 @@ async function claimAllCapital() {
     try {
         // Find positions with available capital
         const positionsToClaim = [];
-        let totalAvailableCapital = new BigNumber(0);
         
         for (let i = 0; i < userInvestments.length; i++) {
             const inv = userInvestments[i];
@@ -806,21 +832,11 @@ async function claimAllCapital() {
             if ((!inv.isActive || parseInt(inv.endTime) <= currentTime) && 
                 parseFloat(web3.utils.fromWei(inv.availableCapital, 'ether')) > 0) {
                 positionsToClaim.push(i);
-                totalAvailableCapital = totalAvailableCapital.plus(new BigNumber(inv.availableCapital));
             }
         }
         
         if (positionsToClaim.length === 0) {
             showNotification('No capital available to claim yet', 'info');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
-        // Check minimum withdrawal amount
-        const minAmount = web3.utils.toWei('1', 'ether');
-        if (totalAvailableCapital.isLessThan(new BigNumber(minAmount))) {
-            showNotification('Minimum 1 USDT capital required to claim', 'error');
             btn.innerHTML = originalText;
             btn.disabled = false;
             return;
@@ -850,33 +866,35 @@ async function compoundInvestmentROI() {
         return showNotification('Please connect wallet first', 'error');
     }
     
+    // Find the first position with available ROI to compound
+    let positionToCompound = -1;
+    let amountToCompound = '0';
+    let compoundAmount = 0;
+    
+    for (let i = 0; i < userInvestments.length; i++) {
+        const inv = userInvestments[i];
+        if (inv.isActive) {
+            const amount = parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether'));
+            if (amount >= 1) {
+                positionToCompound = i;
+                amountToCompound = inv.availableRoi;
+                compoundAmount = amount;
+                break;
+            }
+        }
+    }
+    
+    if (positionToCompound === -1) {
+        return showNotification('Minimum 1 USDT ROI required for compounding', 'error');
+    }
+    
     const btn = document.getElementById('compoundInvestment');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Compounding...';
     btn.disabled = true;
     
     try {
-        // Find the first position with available ROI to compound
-        let positionToCompound = -1;
-        let amountToCompound = '0';
-        
-        for (let i = 0; i < userInvestments.length; i++) {
-            const inv = userInvestments[i];
-            if (inv.isActive && parseFloat(web3.utils.fromWei(inv.availableRoi, 'ether')) >= 1) {
-                positionToCompound = i;
-                amountToCompound = inv.availableRoi;
-                break;
-            }
-        }
-        
-        if (positionToCompound === -1) {
-            showNotification('Minimum 1 USDT ROI required for compounding', 'error');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
-        showNotification(`Compounding ROI from position ${positionToCompound + 1}...`, 'info');
+        showNotification(`Compounding ${compoundAmount.toFixed(2)} USDT ROI from position ${positionToCompound + 1}...`, 'info');
         await contract.methods.compoundRoiBonus(positionToCompound, amountToCompound).send({ from: userAccount });
         
         showNotification(`ROI compounded successfully!`, 'success');
@@ -896,25 +914,20 @@ async function claimNetworkEarnings() {
         return showNotification('Please connect wallet first', 'error');
     }
     
+    // Check minimum amount
+    const userRewards = await contract.methods.getUserRewards(userAccount).call();
+    const availableRewards = parseFloat(web3.utils.fromWei(userRewards.availableRewards, 'ether'));
+    
+    if (availableRewards < 1) {
+        return showNotification('Minimum 1 USDT required to claim network earnings', 'error');
+    }
+    
     const btn = document.getElementById('claimNetwork');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
     btn.disabled = true;
     
     try {
-        // Get available rewards
-        const userRewards = await contract.methods.getUserRewards(userAccount).call();
-        const totalRewards = new BigNumber(userRewards.availableRewards);
-        
-        // Check minimum withdrawal amount
-        const minAmount = web3.utils.toWei('1', 'ether');
-        if (totalRewards.isLessThan(new BigNumber(minAmount))) {
-            showNotification('Minimum 1 USDT required to claim network earnings', 'error');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
         showNotification('Claiming network earnings...', 'info');
         await contract.methods.claimRewards().send({ from: userAccount });
         showNotification('Network earnings claimed successfully!', 'success');
@@ -934,24 +947,22 @@ async function compoundNetworkEarnings() {
         return showNotification('Please connect wallet first', 'error');
     }
     
+    // Get available rewards
+    const userRewards = await contract.methods.getUserRewards(userAccount).call();
+    const totalRewards = new BigNumber(userRewards.availableRewards);
+    const compoundAmount = parseFloat(web3.utils.fromWei(totalRewards.toString(), 'ether'));
+    
+    if (compoundAmount < 1) {
+        return showNotification('Minimum 1 USDT required for compounding network earnings', 'error');
+    }
+    
     const btn = document.getElementById('compoundNetwork');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Compounding...';
     btn.disabled = true;
     
     try {
-        // Get available rewards
-        const userRewards = await contract.methods.getUserRewards(userAccount).call();
-        const totalRewards = new BigNumber(userRewards.availableRewards);
-        
-        if (parseFloat(web3.utils.fromWei(totalRewards.toString(), 'ether')) < 1) {
-            showNotification('Minimum 1 USDT required for compounding', 'error');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            return;
-        }
-        
-        showNotification('Compounding network earnings...', 'info');
+        showNotification(`Compounding ${compoundAmount.toFixed(2)} USDT network earnings...`, 'info');
         await contract.methods.compoundRewards(totalRewards.toString()).send({ from: userAccount });
         showNotification('Network earnings compounded successfully!', 'success');
         await loadUserData();
@@ -1169,4 +1180,3 @@ function checkPreloader() {
         }, 500);
     });
 }
-[file content end]
