@@ -1,6 +1,3 @@
-[file name]: app.js
-[file content begin]
-// Updated contract address and ABI for new contract
 const CONTRACT_ADDRESS = '0x3eCCC758B9a82D2eB543Dc13433B9beaA46baBF9';
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
 const READ_ONLY_RPC = 'https://bsc-dataseed1.binance.org/';
