@@ -207,7 +207,7 @@ async function connectWallet() {
         }
     } catch (error) {
         console.error('Error connecting wallet:', error);
-        showNotification('Wallet connection failed', 'error');
+        showNotification('Wallet failed to connect!', 'error');
     }
 }
 
@@ -242,9 +242,12 @@ function setupEventListeners() {
     
     document.getElementById('backToPlans').addEventListener('click', showPlans);
     document.getElementById('confirmInvestment').addEventListener('click', confirmInvestment);
-    document.getElementById('newInvestment').addEventListener('click', () => {
-        investmentSuccessPopup.classList.remove('active');
-        showPlans();
+    
+    // FIXED: Close popup when clicking outside
+    investmentSuccessPopup.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+        }
     });
     
     // Dashboard buttons
@@ -369,6 +372,8 @@ async function loadUserData() {
         document.getElementById('teamMembers').textContent = userInfo.teamCount;
         document.getElementById('teamDeposits').textContent = `${formatUSDT(userInfo.teamDeposits)} USDT`;
         
+        // FIXED: Hapus update referral address
+        
         // Load positions and update timers
         const investmentsCount = parseInt(userInfo.positionsCount);
         await loadPositions(investmentsCount);
@@ -403,9 +408,12 @@ async function loadPositions(investmentsCount) {
     
     try {
         const positionsTableBody = document.getElementById('positionsTableBody');
-        if (!positionsTableBody) return;
+        const mobilePositionsView = document.getElementById('mobilePositionsView');
+        
+        if (!positionsTableBody || !mobilePositionsView) return;
         
         positionsTableBody.innerHTML = '';
+        mobilePositionsView.innerHTML = '';
         userInvestments = [];
         
         const formatUSDT = (weiValue) => {
@@ -437,22 +445,70 @@ async function loadPositions(investmentsCount) {
                     planName = planNames[investment.planIndex];
                 }
                 
-                // Create position row
+                // Format dates
+                const startDate = new Date(parseInt(investment.startTime) * 1000).toLocaleDateString();
+                const endDate = new Date(parseInt(investment.endTime) * 1000).toLocaleDateString();
+                const amountFormatted = `${formatUSDT(investment.amount)} USDT`;
+                const status = investment.isActive ? 'Active' : 'Completed';
+                const statusClass = investment.isActive ? 'status-active' : 'status-completed';
+                const statusIcon = investment.isActive ? 'fa-circle-notch fa-spin' : 'fa-check-circle';
+                
+                // Create position row for desktop
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${i + 1}</td>
                     <td>${investment.isActive ? 'Deposit' : 'Completed'}</td>
-                    <td>${formatUSDT(investment.amount)} USDT</td>
+                    <td>${amountFormatted}</td>
                     <td>${planName}</td>
-                    <td>${new Date(parseInt(investment.startTime) * 1000).toLocaleDateString()}</td>
-                    <td>${new Date(parseInt(investment.endTime) * 1000).toLocaleDateString()}</td>
-                    <td><span class="status-badge ${investment.isActive ? 'status-active' : 'status-completed'}">
-                        <i class="fas ${investment.isActive ? 'fa-circle-notch fa-spin' : 'fa-check-circle'}"></i>
-                        ${investment.isActive ? 'Active' : 'Completed'}
+                    <td>${startDate}</td>
+                    <td>${endDate}</td>
+                    <td><span class="status-badge ${statusClass}">
+                        <i class="fas ${statusIcon}"></i>
+                        ${status}
                     </span></td>
                 `;
-                
                 positionsTableBody.appendChild(row);
+                
+                // Create mobile position card
+                const mobileCard = document.createElement('div');
+                mobileCard.className = 'mobile-position-card';
+                mobileCard.innerHTML = `
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">Position</div>
+                        <div class="mobile-position-value">${i + 1}</div>
+                    </div>
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">Type</div>
+                        <div class="mobile-position-value">${investment.isActive ? 'Deposit' : 'Completed'}</div>
+                    </div>
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">Amount</div>
+                        <div class="mobile-position-value">${amountFormatted}</div>
+                    </div>
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">Plan</div>
+                        <div class="mobile-position-value">${planName}</div>
+                    </div>
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">Start Date</div>
+                        <div class="mobile-position-value">${startDate}</div>
+                    </div>
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">End Date</div>
+                        <div class="mobile-position-value">${endDate}</div>
+                    </div>
+                    <div class="mobile-position-row">
+                        <div class="mobile-position-label">Status</div>
+                        <div class="mobile-position-value">
+                            <span class="status-badge ${statusClass}">
+                                <i class="fas ${statusIcon}"></i>
+                                ${status}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                mobilePositionsView.appendChild(mobileCard);
+                
             } catch (error) {
                 console.error(`Error loading position ${i}:`, error);
             }
@@ -571,11 +627,11 @@ function showPlans() {
 
 async function confirmInvestment() {
     if (!contract || !userAccount) {
-        return showNotification('Please connect wallet first', 'error');
+        return showNotification('Please connect wallet first!', 'error');
     }
     
     if (!selectedPlan) {
-        return showNotification('Please select a plan first', 'error');
+        return showNotification('Please select a plan first!', 'error');
     }
     
     const amount = parseFloat(document.getElementById('investmentAmount').value) || 0;
@@ -602,7 +658,7 @@ async function confirmInvestment() {
         // Check and approve USDT allowance
         const allowance = await usdtContract.methods.allowance(userAccount, CONTRACT_ADDRESS).call();
         if (new BigNumber(allowance).isLessThan(new BigNumber(amountWei))) {
-            showNotification('Approving USDT...', 'info');
+            showNotification('Approving...', 'info');
             await usdtContract.methods.approve(
                 CONTRACT_ADDRESS, 
                 '115792089237316195423570985008687907853269984665640564039457584007913129639935'
@@ -611,10 +667,10 @@ async function confirmInvestment() {
         }
         
         // Make deposit
-        showNotification('Making deposit...', 'info');
+        showNotification('Deposit...', 'info');
         await contract.methods.deposit(amountWei, uplineAddress).send({ from: userAccount });
         
-        showNotification('Deposit successful! Your investment is now active.', 'success');
+        showNotification('Deposit successful!', 'success');
         investmentSuccessPopup.classList.add('active');
         
         // Refresh data
@@ -720,7 +776,12 @@ function updateCapitalTimer(endTime) {
         const minutes = Math.floor((timeLeft % 3600) / 60);
         const seconds = timeLeft % 60;
         
-        timerElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        // FIXED: Better display for mobile
+        if (window.innerWidth <= 768) {
+            timerElement.textContent = `${days}d ${hours}h ${minutes}m`;
+        } else {
+            timerElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
         claimBtn.disabled = true;
     } else {
         timerElement.textContent = 'Ready to Claim';
@@ -730,7 +791,7 @@ function updateCapitalTimer(endTime) {
 
 async function claimAllROI() {
     if (!contract || !userAccount) {
-        return showNotification('Please connect wallet first', 'error');
+        return showNotification('Please connect wallet first!', 'error');
     }
     
     // Check minimum amount
@@ -746,7 +807,7 @@ async function claimAllROI() {
     }
     
     if (totalAvailableROI < 1) {
-        return showNotification('Minimum 1 USDT required to claim ROI', 'error');
+        return showNotification('Minimum 1 USDT!', 'error');
     }
     
     const btn = document.getElementById('claimROI');
@@ -770,7 +831,7 @@ async function claimAllROI() {
         }
         
         if (positionsToClaim.length === 0) {
-            showNotification('No ROI available to claim yet', 'info');
+            showNotification('No ROI available to claim yet!', 'info');
             btn.innerHTML = originalText;
             btn.disabled = false;
             return;
@@ -797,7 +858,7 @@ async function claimAllROI() {
 
 async function claimAllCapital() {
     if (!contract || !userAccount) {
-        return showNotification('Please connect wallet first', 'error');
+        return showNotification('Please connect wallet first!', 'error');
     }
     
     // Check minimum amount
@@ -813,7 +874,7 @@ async function claimAllCapital() {
     }
     
     if (totalAvailableCapital < 1) {
-        return showNotification('Minimum 1 USDT required to claim capital', 'error');
+        return showNotification('Minimum 1 USDT!', 'error');
     }
     
     const btn = document.getElementById('claimCapital');
@@ -836,7 +897,7 @@ async function claimAllCapital() {
         }
         
         if (positionsToClaim.length === 0) {
-            showNotification('No capital available to claim yet', 'info');
+            showNotification('No capital available to claim yet!', 'info');
             btn.innerHTML = originalText;
             btn.disabled = false;
             return;
@@ -863,7 +924,7 @@ async function claimAllCapital() {
 
 async function compoundInvestmentROI() {
     if (!contract || !userAccount) {
-        return showNotification('Please connect wallet first', 'error');
+        return showNotification('Please connect wallet first!', 'error');
     }
     
     // Find the first position with available ROI to compound
@@ -885,7 +946,7 @@ async function compoundInvestmentROI() {
     }
     
     if (positionToCompound === -1) {
-        return showNotification('Minimum 1 USDT ROI required for compounding', 'error');
+        return showNotification('Minimum 1 USDT!', 'error');
     }
     
     const btn = document.getElementById('compoundInvestment');
@@ -911,7 +972,7 @@ async function compoundInvestmentROI() {
 
 async function claimNetworkEarnings() {
     if (!contract || !userAccount) {
-        return showNotification('Please connect wallet first', 'error');
+        return showNotification('Please connect wallet first!', 'error');
     }
     
     // Check minimum amount
@@ -919,7 +980,7 @@ async function claimNetworkEarnings() {
     const availableRewards = parseFloat(web3.utils.fromWei(userRewards.availableRewards, 'ether'));
     
     if (availableRewards < 1) {
-        return showNotification('Minimum 1 USDT required to claim network earnings', 'error');
+        return showNotification('Minimum 1 USDT!', 'error');
     }
     
     const btn = document.getElementById('claimNetwork');
@@ -944,7 +1005,7 @@ async function claimNetworkEarnings() {
 
 async function compoundNetworkEarnings() {
     if (!contract || !userAccount) {
-        return showNotification('Please connect wallet first', 'error');
+        return showNotification('Please connect wallet first!', 'error');
     }
     
     // Get available rewards
@@ -953,7 +1014,7 @@ async function compoundNetworkEarnings() {
     const compoundAmount = parseFloat(web3.utils.fromWei(totalRewards.toString(), 'ether'));
     
     if (compoundAmount < 1) {
-        return showNotification('Minimum 1 USDT required for compounding network earnings', 'error');
+        return showNotification('Minimum 1 USDT!', 'error');
     }
     
     const btn = document.getElementById('compoundNetwork');
@@ -980,7 +1041,7 @@ async function loadTeamData() {
     if (!contract || !userAccount) return;
     
     try {
-        // Get downlines from contract
+        // Get downlines from contract - FIXED: Mengambil data real dari kontrak
         const downlines = await contract.methods.getDownlines(userAccount).call();
         userTeamData = [];
         
@@ -988,18 +1049,18 @@ async function loadTeamData() {
             return parseFloat(web3.utils.fromWei(weiValue, 'ether')).toFixed(2);
         };
         
-        // For each downline, get their information
+        // FIXED: Loop melalui semua downlines dan ambil data real
         for (let i = 0; i < downlines.length; i++) {
             const downlineAddress = downlines[i];
             
             try {
-                // Get user info for downline
+                // Get user info for downline dari kontrak
                 const userInfo = await contract.methods.getUserInfo(downlineAddress).call();
                 const isActive = await contract.methods.isUserActive(downlineAddress).call();
                 
                 const teamMember = {
                     address: downlineAddress,
-                    level: i + 1, // Level is index + 1
+                    level: i + 1, // Level adalah index + 1
                     totalDeposit: userInfo.totalDeposits,
                     activeDeposit: isActive ? userInfo.totalDeposits : '0',
                     teamCount: userInfo.teamCount,
@@ -1025,9 +1086,11 @@ async function loadTeamData() {
 
 function displayTeamData() {
     const teamTableBody = document.getElementById('teamTableBody');
+    const mobileTeamView = document.getElementById('mobileTeamView');
     const levelFilter = document.getElementById('levelFilter').value;
     
     teamTableBody.innerHTML = '';
+    mobileTeamView.innerHTML = '';
     
     const formatUSDT = (weiValue) => {
         return parseFloat(web3.utils.fromWei(weiValue, 'ether')).toFixed(2);
@@ -1043,6 +1106,12 @@ function displayTeamData() {
                     </div>
                 </td>
             </tr>
+        `;
+        mobileTeamView.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <p>No team members found</p>
+            </div>
         `;
         return;
     }
@@ -1063,14 +1132,22 @@ function displayTeamData() {
                 </td>
             </tr>
         `;
+        mobileTeamView.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <i class="fas fa-filter" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <p>No team members found for selected level</p>
+            </div>
+        `;
         return;
     }
     
-    // Display filtered team data
+    // Display filtered team data for desktop
     filteredData.forEach(member => {
         const row = document.createElement('tr');
+        // Format alamat pendek
+        const shortAddress = `${member.address.substring(0, 3)}...${member.address.substring(member.address.length - 3)}`;
         row.innerHTML = `
-            <td><span class="wallet-address">${member.address.substring(0, 6)}...${member.address.substring(member.address.length - 4)}</span></td>
+            <td><span class="wallet-address">${shortAddress}</span></td>
             <td>${member.level}</td>
             <td>${formatUSDT(member.totalDeposit)} USDT</td>
             <td>${formatUSDT(member.activeDeposit)} USDT</td>
@@ -1078,6 +1155,41 @@ function displayTeamData() {
             <td>${formatUSDT(member.teamDeposits)} USDT</td>
         `;
         teamTableBody.appendChild(row);
+    });
+    
+    // Display filtered team data for mobile
+    filteredData.forEach(member => {
+        const mobileCard = document.createElement('div');
+        mobileCard.className = 'mobile-team-card';
+        // Format alamat pendek
+        const shortAddress = `${member.address.substring(0, 3)}...${member.address.substring(member.address.length - 3)}`;
+        mobileCard.innerHTML = `
+            <div class="mobile-team-row">
+                <div class="mobile-team-label">Address</div>
+                <div class="mobile-team-value wallet-address">${shortAddress}</div>
+            </div>
+            <div class="mobile-team-row">
+                <div class="mobile-team-label">Level</div>
+                <div class="mobile-team-value">${member.level}</div>
+            </div>
+            <div class="mobile-team-row">
+                <div class="mobile-team-label">Total Deposit</div>
+                <div class="mobile-team-value">${formatUSDT(member.totalDeposit)} USDT</div>
+            </div>
+            <div class="mobile-team-row">
+                <div class="mobile-team-label">Active Deposit</div>
+                <div class="mobile-team-value">${formatUSDT(member.activeDeposit)} USDT</div>
+            </div>
+            <div class="mobile-team-row">
+                <div class="mobile-team-label">Team Size</div>
+                <div class="mobile-team-value">${member.teamCount}</div>
+            </div>
+            <div class="mobile-team-row">
+                <div class="mobile-team-label">Team Volume</div>
+                <div class="mobile-team-value">${formatUSDT(member.teamDeposits)} USDT</div>
+            </div>
+        `;
+        mobileTeamView.appendChild(mobileCard);
     });
 }
 
