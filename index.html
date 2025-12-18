@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexGenFi - Smart Investment Platform</title>
-    <meta name="description" content="Earn daily returns with 4% capital return, multi-level referral bonuses, and leadership rewards system">
+    <title>NexGenFi - Next Generation DeFi</title>
+    <meta name="description" content="Earn daily returns with 4% capital return, multi-level referral bonuses, and leadership rewards system!">
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    
+    <!-- External Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bignumber.js@9.1.2/bignumber.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+    <!-- Local CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,8 +32,8 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="nav__logo">
-                <img src="image/logo.png" alt="N" class="logo">
+            <a href="nexgenfi.app" class="nav__logo">
+                <img src="image/logo.png" alt="N" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0'">
                 <div class="logo__text">NEXGENFI</div>
             </a>
 
@@ -63,14 +67,14 @@
             <div class="hero__container container">
                 <div class="hero__content">
                     <div class="badge">
-                        <i class="fas fa-chart-line"></i> Smart Investment Platform
+                        <i class="fas fa-chart-line"></i> Next Generation DeFi
                     </div>
                     <h1 class="hero__title">
-                        Maximize Your Returns with <br>
-                        <span class="gradient-text">NexGenFi Protocol</span>
+                        A Smarter Way to Generate <br>
+                        <span class="gradient-text">Returns with NexGenFi</span>
                     </h1>
                     <p class="hero__description">
-                        Invest USDT and earn 4% daily capital return plus ROI bonuses. Build your team and unlock 20-level referral commissions and 7 leadership ranks.
+                        Powered by verifiable smart contracts, NexGenFi delivers clarity, automation, and predictable on-chain returns
                     </p>
                     <div class="hero__buttons">
                         <button class="btn btn--primary btn-lg" data-section="invest">
@@ -128,7 +132,7 @@
                     <span>Please connect your wallet to view your dashboard</span>
                 </div>
 
-                <!-- Timer Section (Moved from buttons) -->
+                <!-- Timer Section - FIXED for Mobile -->
                 <div class="timer-section" id="timerSection" style="display: none; margin-bottom: 30px;">
                     <div class="timer-container">
                         <div class="timer-box">
@@ -146,21 +150,21 @@
                 <div class="dashboard-section" id="investmentIncomeSection" style="display: none;">
                     <h3 class="dashboard-subtitle">Investment Income</h3>
                     <div class="income-stats compact-stats">
-                        <div class="stat-card compact-card">
+                        <div class="stat-card compact-card premium-card">
                             <div class="stat-icon"><i class="fas fa-wallet"></i></div>
                             <div class="stat-info">
                                 <div class="stat-value" id="totalDepositDashboard">0 USDT</div>
                                 <div class="stat-label">Total Deposit</div>
                             </div>
                         </div>
-                        <div class="stat-card compact-card">
+                        <div class="stat-card compact-card premium-card">
                             <div class="stat-icon"><i class="fas fa-coins"></i></div>
                             <div class="stat-info">
                                 <div class="stat-value" id="capitalEarning">0 USDT</div>
                                 <div class="stat-label">Capital Earning</div>
                             </div>
                         </div>
-                        <div class="stat-card compact-card">
+                        <div class="stat-card compact-card premium-card">
                             <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
                             <div class="stat-info">
                                 <div class="stat-value" id="roiEarning">0 USDT</div>
@@ -186,21 +190,21 @@
                 <div class="dashboard-section" id="networkIncomeSection" style="display: none;">
                     <h3 class="dashboard-subtitle">Network Income</h3>
                     <div class="income-stats compact-stats">
-                        <div class="stat-card compact-card">
+                        <div class="stat-card compact-card premium-card">
                             <div class="stat-icon"><i class="fas fa-gift"></i></div>
                             <div class="stat-info">
                                 <div class="stat-value" id="referralEarning">0 USDT</div>
                                 <div class="stat-label">Referral Earning</div>
                             </div>
                         </div>
-                        <div class="stat-card compact-card">
+                        <div class="stat-card compact-card premium-card">
                             <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
                             <div class="stat-info">
                                 <div class="stat-value" id="onboardingEarning">0 USDT</div>
                                 <div class="stat-label">Onboarding Earning</div>
                             </div>
                         </div>
-                        <div class="stat-card compact-card">
+                        <div class="stat-card compact-card premium-card">
                             <div class="stat-icon"><i class="fas fa-crown"></i></div>
                             <div class="stat-info">
                                 <div class="stat-value" id="leadershipEarning">0 USDT</div>
@@ -219,10 +223,10 @@
                     </div>
                 </div>
 
-                <!-- My Positions Section -->
+                <!-- My Positions Section - FIXED for Mobile -->
                 <div class="my-positions-section premium-card" id="myPositionsSection" style="display: none;">
-                    <div class="section__header">
-                        <h3 class="section__title">My Positions</h3>
+                    <div class="section__header" style="margin-bottom: 30px;">
+                        <h3 class="section__title" style="font-size: 1.8rem;">My Positions</h3>
                         <p class="section__subtitle">History of your deposits and compounds</p>
                     </div>
 
@@ -244,6 +248,10 @@
                                     <!-- Positions will be generated by JavaScript -->
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Mobile View for Positions -->
+                        <div class="mobile-positions-view" id="mobilePositionsView">
+                            <!-- Mobile position cards will be generated by JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -370,11 +378,11 @@
                 </div>
 
                 <!-- Investment Form -->
-                <div class="investment-form-container" id="investmentForm" style="display: none;">
+                <div class="investment-form-container premium-card" id="investmentForm" style="display: none;">
                     <div class="card__header">
                         <h2 id="selectedPlanTitle">Complete Your Deposit</h2>
                         <button class="btn btn--outline btn-sm compact-btn" id="backToPlans">
-                            <i class="fas fa-arrow-left"></i> Back to Plans
+                            <i class="fas fa-arrow-left"></i> Back
                         </button>
                     </div>
 
@@ -408,25 +416,27 @@
                     </div>
                 </div>
 
+                <!-- FIXED: Success popup dengan hanya satu tombol -->
                 <div class="investment-success-popup" id="investmentSuccessPopup">
                     <div class="investment-success">
                         <div class="success-icon"><i class="fas fa-check"></i></div>
                         <h2>Deposit Successful!</h2>
-                        <p>Your investment is now active and earning returns</p>
-                        <div class="success-actions">
-                            <button class="btn btn--primary compact-btn" data-section="dashboard">Go to Dashboard</button>
-                            <button class="btn btn--outline compact-btn" id="newInvestment">New Deposit</button>
+                        <p style="color: var(--text-muted); margin: 10px 0 20px;">Your investment is now active and earning returns</p>
+                        <div class="single-success-action">
+                            <button class="btn btn--primary compact-btn" data-section="dashboard">
+                                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Referral Section -->
+        <!-- Referral Section - FIXED: Hapus semua teks referral address -->
         <section class="section" id="referral" style="display: none;">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">20-Level Referral Program</h2>
+                    <h2 class="section__title">Referral Program</h2>
                     <p class="section__subtitle">Earn commissions from your entire network structure</p>
                 </div>
 
@@ -436,18 +446,18 @@
                 </div>
 
                 <div class="referral-stats compact-stats" id="referralStats" style="display: none;">
-                    <div class="stat-card compact-card">
+                    <div class="stat-card compact-card premium-card">
                         <div class="stat-icon"><i class="fas fa-users"></i></div>
                         <div class="stat-info">
                             <div class="stat-value" id="totalDownlines">0</div>
                             <div class="stat-label">Total Downlines</div>
                         </div>
                     </div>
-                    <div class="stat-card compact-card">
+                    <div class="stat-card compact-card premium-card">
                         <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
                         <div class="stat-info">
                             <div class="stat-value" id="qualifiedLevels">0</div>
-                            <div class="stat-label">Qualified Levels</div>
+                            <div class="stat-label">Level Achieved</div>
                         </div>
                     </div>
                 </div>
@@ -458,9 +468,10 @@
                     <div class="link-input-group">
                         <input type="text" id="referralLink" class="link-input" readonly>
                         <button class="btn btn--primary" id="copyLink">
-                            <i class="fas fa-copy"></i> Copy
+                            <i class="fas fa-copy"></i> Copy Referral Link
                         </button>
                     </div>
+                    <!-- FIXED: Hapus semua teks dan alamat referral -->
                 </div>
 
                 <div class="referral-levels-compact" id="referralLevelsCompact">
@@ -473,7 +484,7 @@
         <section class="section" id="leadership" style="display: none;">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">7-Tier Leadership Program</h2>
+                    <h2 class="section__title">Leadership Program</h2>
                     <p class="section__subtitle">Unlock higher bonuses by building a strong team</p>
                 </div>
 
@@ -483,25 +494,25 @@
                 </div>
 
                 <div class="leadership-stats compact-stats" id="leadershipStats" style="display: none;">
-                    <div class="stat-card compact-card">
+                    <div class="stat-card compact-card premium-card">
                         <div class="stat-icon"><i class="fas fa-medal"></i></div>
                         <div class="stat-info">
                             <div class="stat-value" id="currentRank">-</div>
-                            <div class="stat-label">Current Rank</div>
+                            <div class="stat-label">Rank Achieved</div>
                         </div>
                     </div>
-                    <div class="stat-card compact-card">
+                    <div class="stat-card compact-card premium-card">
                         <div class="stat-icon"><i class="fas fa-users"></i></div>
                         <div class="stat-info">
                             <div class="stat-value" id="teamMembers">0</div>
-                            <div class="stat-label">Team Members</div>
+                            <div class="stat-label">Total Team</div>
                         </div>
                     </div>
-                    <div class="stat-card compact-card">
+                    <div class="stat-card compact-card premium-card">
                         <div class="stat-icon"><i class="fas fa-coins"></i></div>
                         <div class="stat-info">
                             <div class="stat-value" id="teamDeposits">0 USDT</div>
-                            <div class="stat-label">Team Deposits</div>
+                            <div class="stat-label">Deposit Volume</div>
                         </div>
                     </div>
                 </div>
@@ -512,7 +523,7 @@
             </div>
         </section>
 
-        <!-- Team Data Section -->
+        <!-- Team Data Section - FIXED for Mobile -->
         <section class="section" id="team" style="display: none;">
             <div class="container">
                 <div class="section__header">
@@ -527,33 +538,36 @@
 
                 <div class="team-data-container premium-card" id="teamTableContainer" style="display: none;">
                     <div class="team-filters">
-                        <select id="levelFilter" class="form-input compact-select">
-                            <option value="">All Levels</option>
-                            <option value="1">Level 1</option>
-                            <option value="2">Level 2</option>
-                            <option value="3">Level 3</option>
-                            <option value="4">Level 4</option>
-                            <option value="5">Level 5</option>
-                            <option value="6">Level 6</option>
-                            <option value="7">Level 7</option>
-                            <option value="8">Level 8</option>
-                            <option value="9">Level 9</option>
-                            <option value="10">Level 10</option>
-                            <option value="11">Level 11</option>
-                            <option value="12">Level 12</option>
-                            <option value="13">Level 13</option>
-                            <option value="14">Level 14</option>
-                            <option value="15">Level 15</option>
-                            <option value="16">Level 16</option>
-                            <option value="17">Level 17</option>
-                            <option value="18">Level 18</option>
-                            <option value="19">Level 19</option>
-                            <option value="20">Level 20</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <!-- FIXED: Updated select dropdown untuk level 1-20 -->
+                            <select id="levelFilter" class="form-input compact-select">
+                                <option value="">All Levels</option>
+                                <option value="1">Level 1</option>
+                                <option value="2">Level 2</option>
+                                <option value="3">Level 3</option>
+                                <option value="4">Level 4</option>
+                                <option value="5">Level 5</option>
+                                <option value="6">Level 6</option>
+                                <option value="7">Level 7</option>
+                                <option value="8">Level 8</option>
+                                <option value="9">Level 9</option>
+                                <option value="10">Level 10</option>
+                                <option value="11">Level 11</option>
+                                <option value="12">Level 12</option>
+                                <option value="13">Level 13</option>
+                                <option value="14">Level 14</option>
+                                <option value="15">Level 15</option>
+                                <option value="16">Level 16</option>
+                                <option value="17">Level 17</option>
+                                <option value="18">Level 18</option>
+                                <option value="19">Level 19</option>
+                                <option value="20">Level 20</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="premium-table-container">
                         <div class="table-responsive">
-                            <table class="premium-table">
+                            <table class="premium-table team-table">
                                 <thead>
                                     <tr>
                                         <th>Address</th>
@@ -569,12 +583,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Mobile View for Team Data -->
+                        <div class="mobile-team-view" id="mobileTeamView">
+                            <!-- Mobile team cards will be generated by JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
+        <!-- FAQ Section - UPDATED with 10 questions -->
         <section class="section" id="faq" style="display: none;">
             <div class="container">
                 <div class="section__header">
@@ -693,21 +711,21 @@
             <div class="footer__content">
                 <div class="footer__brand">
                     <div class="footer__logo">
-                        <img src="image/logo.png" alt="NexGenFi" class="logo">
+                        <img src="image/logo.png" alt="" class="logo" onerror="this.style.display='none'">
                         <span>NexGenFi</span>
                     </div>
                     <p>
-                        Smart investment platform with 4% daily capital return, 20-level referral commissions, and 7-tier leadership rewards
+                        Powered by verifiable smart contracts, NexGenFi delivers clarity, automation, and predictable on-chain returns
                     </p>
                     <div class="footer__social">
-                        <a href="#" class="social__link"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#" class="social__link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://t.me/NexgenFiOfficial" class="social__link"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="https://x.com/NexgenFi" class="social__link"><i class="fab fa-twitter"></i></a>
                         <a href="https://bscscan.com/address/0x3eCCC758B9a82D2eB543Dc13433B9beaA46baBF9" target="_blank" class="social__link"><i class="fas fa-file-contract"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; NexGenFi All Rights Reserved</p>
+                <p>&copy; 2025 All Rights Reserved</p>
             </div>
         </div>
     </footer>
@@ -715,6 +733,7 @@
     <!-- Notification -->
     <div class="notification" id="notification"></div>
 
+    <!-- Local JavaScript -->
     <script src="app.js"></script>
 </body>
 </html>
